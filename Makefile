@@ -6,7 +6,7 @@
 #    By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:13:03 by pehenri2          #+#    #+#              #
-#    Updated: 2023/12/13 13:27:23 by pehenri2         ###   ########.fr        #
+#    Updated: 2024/01/15 16:53:02 by pehenri2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,10 @@ CC					= cc
 HEADERS				= -I ./include -I $(LIBFT)
 LIBS				= $(LIBFT)/libft.a
 SRCS_PATH			= ./src/mandatory/
-FILES				= *.c
+FILES				= main.c movements.c utils.c
 OBJS				= $(addprefix $(SRCS_PATH),$(FILES:%.c=%.o))
 BONUS_PATH			= ./src/bonus/
-BONUS_FILES			= *.c
+BONUS_FILES			= $(wildcard *.c)
 BONUS_OBJS			= $(addprefix $(BONUS_PATH),$(BONUS_FILES:%.c=%.o))
 EXE					?= 	push_swap
 
