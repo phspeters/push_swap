@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:13:11 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/15 18:08:50 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/16 17:46:17 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ typedef struct s_movement_node
 	char					*move;
 	struct s_movement_node	*next;
 }	t_movement_node;
+//parsing.c
+int				parse_arguments(int argc, char *argv[]);
+int				check_for_invalid_chars(char **list);
 //utils.c
 t_stack_node	*find_last(t_stack *stack);
 void			create_node_and_append(t_stack *stack, int number);

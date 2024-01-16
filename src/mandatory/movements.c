@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:13:52 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/15 18:11:21 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/16 15:48:01 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,70 +14,73 @@
 
 void	swap(t_stack *stack)
 {
-	t_stack_node	*head;
 	t_stack_node	*first;
 	t_stack_node	*second;
 
-	head = stack->head;
-	if (head == NULL || head->next == NULL)
+	if (stack->head == NULL || stack->head->next == NULL)
 		return ;
-	first = head;
-	second = head->next;
+	first = stack->head;
+	second = stack->head->next;
 	first->next = second->next;
-	second->next = first;
 	first->prev = second;
-	if (first->next != NULL)
-		first->next->prev = first;
-	head = second;
+	second->next = first;
+	second->prev = NULL;
+	stack->head = second;
 }
 
-void	push(t_stack *stack_a, t_stack *stack_b)
+void	push(t_stack *origin_stack, t_stack *destination_stack)
 {
-	t_stack_node	*head_a;
-	t_stack_node	*head_b;
+	t_stack_node	*destination_head;
+	t_stack_node	*origin_head;
 	t_stack_node	*pushed_element;
 
-	head_a = stack_a->head;
-	head_b = stack_b->head;
-	if (head_a == NULL || head_b == NULL)
+	origin_head = origin_stack->head;
+	if (origin_head == NULL)
 		return ;
-	pushed_element = head_b;
-	pushed_element->next = head_a;
-	head_a->prev = pushed_element;
-	head_b->next->prev = NULL;
-	head_b = head_b->next;
-	head_a = pushed_element;
+	origin_stack->head = origin_stack->head->next;
+	destination_head = destination_stack->head;
+	pushed_element = origin_head;
+	pushed_element->next = destination_head;
+	pushed_element->prev = NULL;
+	if (destination_head)
+		destination_head->prev = pushed_element;
+	destination_stack->head = pushed_element;
+	if (!destination_stack->tail)
+		destination_stack->tail = pushed_element;
+	origin_stack->stack_size--;
+	destination_stack->stack_size++;
 }
 
 void	rotate(t_stack *stack)
 {
-	t_stack_node	*head;
-	t_stack_node	*last;
 	t_stack_node	*first;
+	t_stack_node	*last;
 
-	head = stack->head;
-	if (head == NULL || head->next == NULL)
+	first = stack->head;
+	if (first == NULL || first->next == NULL)
 		return ;
+	stack->head = stack->head->next;
+	stack->head->prev = NULL;
 	last = stack->tail;
-	first = head->next;
-	last->next = head;
-	head->prev = last;
-	first->prev = NULL;
-	head = first;
+	stack->tail = first;
+	first->next = NULL;
+	first->prev = last;
+	last->next = first;
 }
 
 void	reverse_rotate(t_stack *stack)
 {
-	t_stack_node	*head;
+	t_stack_node	*first;
 	t_stack_node	*last;
 
-	head = stack->head;
-	if (head == NULL || head->next == NULL)
+	first = stack->head;
+	if (first == NULL || first->next == NULL)
 		return ;
 	last = stack->tail;
-	last->prev->next = NULL;
-	last->next = head;
-	last->next->prev = last->next;
+	stack->head = last;
+	stack->tail = stack->tail->prev;
+	stack->tail->next = NULL;
+	first->prev = last;
+	last->next = first;
 	last->prev = NULL;
-	head = last;
 }
