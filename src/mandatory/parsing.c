@@ -6,7 +6,11 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:05:14 by pehenri2          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/01/17 18:10:34 by pehenri2         ###   ########.fr       */
+=======
+/*   Updated: 2024/01/16 21:34:25 by pehenri2         ###   ########.fr       */
+>>>>>>> 8c647c7e10c50a6e34d950c5abeaddf48aea6f5c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +84,7 @@ int	parse_arguments(char **list, int flag, t_stack *stack)
 //both call parse_arguments but the first also frees 
 void	create_stack(int argc, char *argv[], t_stack *stack)
 {
+<<<<<<< HEAD
 	char	**arguments;
 	int		*number_list;
 	int		exit_status;
@@ -87,10 +92,20 @@ void	create_stack(int argc, char *argv[], t_stack *stack)
 	arguments = NULL;
 	number_list = NULL;
 	exit_status = EXIT_SUCCESS;
+=======
+	char	**argument_list;
+	char	**malloc;
+	int		exit_status;
+
+	exit_status = 1;
+	argument_list = NULL;
+	malloc = NULL;
+>>>>>>> 8c647c7e10c50a6e34d950c5abeaddf48aea6f5c
 	if (argc == 1)
 		exit(EXIT_FAILURE);
 	else if (argc == 2)
 	{
+<<<<<<< HEAD
 		arguments = ft_split(argv[1], ' ');
 		exit_status = parse_arguments(arguments, SINGLE_ARG, stack);
 	}
@@ -104,4 +119,16 @@ void	create_stack(int argc, char *argv[], t_stack *stack)
 		write(STDERR_FILENO, "Error\n", 7);
 		exit(EXIT_FAILURE);
 	}
+=======
+		argument_list = ft_split(argv[1], ' ');
+		malloc = argument_list;
+	}
+	else if (argc > 2)
+		argument_list = ++argv;
+	if (!check_for_invalid_arguments(argument_list))
+		exit_status = 0;
+	if (malloc)
+		free_ptr_array(argument_list);
+	return (exit_status);
+>>>>>>> 8c647c7e10c50a6e34d950c5abeaddf48aea6f5c
 }
