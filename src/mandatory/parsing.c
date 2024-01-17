@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:05:14 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/16 17:50:04 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/16 21:34:25 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,25 @@ int	check_for_invalid_chars(char **list)
 
 int	parse_arguments(int argc, char *argv[])
 {
-	char	**number_list;
+	char	**argument_list;
+	char	**malloc;
 	int		exit_status;
 
 	exit_status = 1;
-	number_list = NULL;
+	argument_list = NULL;
+	malloc = NULL;
 	if (argc == 1)
 		exit(exit_status);
 	else if (argc == 2)
-		number_list = ft_split(argv[1], ' ');
+	{
+		argument_list = ft_split(argv[1], ' ');
+		malloc = argument_list;
+	}
 	else if (argc > 2)
-		number_list = ++argv;
-	if (!check_for_invalid_arguments(number_list))
+		argument_list = ++argv;
+	if (!check_for_invalid_arguments(argument_list))
 		exit_status = 0;
-	while (**number_list)
-		printf("%")
-	//if (argc == 2)
-	//	free_splitted(number_list);
+	if (malloc)
+		free_ptr_array(argument_list);
 	return (exit_status);
 }
