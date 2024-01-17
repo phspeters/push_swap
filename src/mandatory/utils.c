@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:54:45 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/16 15:19:22 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/17 17:25:26 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,32 @@ void	free_stack(t_stack *stack)
 		free(current);
 		current = next;
 	}
+}
+
+int	ft_atol(const char *nptr)
+{
+	int		i;
+	int		s;
+	long	result;
+
+	s = 1;
+	i = 0;
+	result = 0;
+	while (ft_isspace(nptr[i]))
+		i++;
+	if (nptr[i] == '-')
+	{
+		s = -1;
+		i++;
+	}
+	else if (nptr[i] == '+')
+		i++;
+	while (ft_isdigit(nptr[i]))
+	{
+		result = (nptr[i] - '0') + (result * 10);
+		i++;
+	}
+	if (nptr[i] != '\0')
+		return (0);
+	return (result * s);
 }

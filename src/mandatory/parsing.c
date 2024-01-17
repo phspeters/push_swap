@@ -6,62 +6,102 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:05:14 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/16 17:50:04 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/17 18:10:34 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_for_invalid_arguments(char **list)
-{
-	check_for_invalid_chars(list);
-	//check_for_duplicates(list);
-	return (0);
-}
-
-int	check_for_invalid_chars(char **list)
+int	check_for_duplicates_and_range(long *list, int size)
 {
 	int	i;
 	int	j;
 
+	if (list == NULL)
+		return (EXIT_FAILURE);
 	i = 0;
-	while (list[i])
+	while (i < size)
 	{
-		j = 0;
-		while (list[j])
+		if ((list[i] > INT_MAX) || (list[i] < INT_MIN))
+			return (EXIT_FAILURE);
+		j = i + 1;
+		while (j < size)
 		{
-			if (list[i][j] == '-')
-			{
-				if (!ft_isdigit(list[i][j + 1]))
-					return (1);
-			}
-			else if (!ft_isdigit(list[i][j]))
-				return (1);
+			if (list[i] == list[j])
+				return (EXIT_FAILURE);
 			j++;
 		}
 		i++;
 	}
-	return (0);
+	free(list);
+	return (EXIT_SUCCESS);
 }
 
-int	parse_arguments(int argc, char *argv[])
+int	count_args(char **list)
 {
-	char	**number_list;
+	int	arg_counter;
+
+	arg_counter = 0;
+	while (list[arg_counter])
+		arg_counter++;
+	return (arg_counter);
+}
+
+int	parse_arguments(char **list, int flag, t_stack *stack)
+{
+	int		arg_counter;
+	long	*number_list;
+
+	number_list = malloc(sizeof(int) * count_args(list));
+	arg_counter = -1;
+	while (list[++arg_counter])
+	{
+		number_list[arg_counter] = ft_atol(list[arg_counter]);
+		if ((number_list[arg_counter] == 0) && (*list[arg_counter] != '0'))
+		{
+			free(number_list);
+			number_list = NULL;
+			break ;
+		}
+		create_node_and_append(stack, number_list[arg_counter]);
+	}
+	if (flag == SINGLE_ARG)
+		ft_free_str_array(list);
+	if (check_for_duplicates_and_range(number_list, arg_counter))
+	{
+		free(number_list);
+		free_stack(stack);
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
+//parse_single_argument
+//parse_multiple_arguments
+//both call parse_arguments but the first also frees 
+void	create_stack(int argc, char *argv[], t_stack *stack)
+{
+	char	**arguments;
+	int		*number_list;
 	int		exit_status;
 
-	exit_status = 1;
+	arguments = NULL;
 	number_list = NULL;
+	exit_status = EXIT_SUCCESS;
 	if (argc == 1)
-		exit(exit_status);
+		exit(EXIT_FAILURE);
 	else if (argc == 2)
-		number_list = ft_split(argv[1], ' ');
+	{
+		arguments = ft_split(argv[1], ' ');
+		exit_status = parse_arguments(arguments, SINGLE_ARG, stack);
+	}
 	else if (argc > 2)
-		number_list = ++argv;
-	if (!check_for_invalid_arguments(number_list))
-		exit_status = 0;
-	while (**number_list)
-		printf("%")
-	//if (argc == 2)
-	//	free_splitted(number_list);
-	return (exit_status);
+	{
+		arguments = argv + 1;
+		exit_status = parse_arguments(arguments, MULTI_ARG, stack);
+	}
+	if (exit_status == EXIT_FAILURE)
+	{
+		write(STDERR_FILENO, "Error\n", 7);
+		exit(EXIT_FAILURE);
+	}
 }

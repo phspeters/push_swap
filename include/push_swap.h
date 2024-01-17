@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:13:11 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/16 17:46:17 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/17 18:01:52 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <errno.h>
 # include <stdbool.h>
 # include <limits.h>
+
+# define MULTI_ARG 0
+# define SINGLE_ARG 1
 
 typedef struct s_stack_node
 {
@@ -43,12 +46,15 @@ typedef struct s_movement_node
 	struct s_movement_node	*next;
 }	t_movement_node;
 //parsing.c
-int				parse_arguments(int argc, char *argv[]);
-int				check_for_invalid_chars(char **list);
+void			create_stack(int argc, char *argv[], t_stack *stack);
+int				parse_arguments(char **list, int flag, t_stack *stack);
+int				check_for_duplicates_and_range(long *list, int size);
+int				count_args(char **list);
 //utils.c
 t_stack_node	*find_last(t_stack *stack);
 void			create_node_and_append(t_stack *stack, int number);
 void			free_stack(t_stack	*stack);
+int				ft_atol(const char *nptr);
 //movements.c
 void			swap(t_stack *stack);
 void			push(t_stack *stack_a, t_stack *stack_b);
