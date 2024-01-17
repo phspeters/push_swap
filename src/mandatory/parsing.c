@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:05:14 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/17 18:15:10 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/17 20:43:26 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	count_args(char **list)
 	return (arg_counter);
 }
 
-int	parse_arguments(char **list, int flag, t_stack *stack)
+int	parse_arguments_and_create_stack(char **list, t_stack *stack)
 {
 	int		arg_counter;
 	long	*number_list;
@@ -65,8 +65,6 @@ int	parse_arguments(char **list, int flag, t_stack *stack)
 		}
 		create_node_and_append(stack, number_list[arg_counter]);
 	}
-	if (flag == SINGLE_ARG)
-		ft_free_str_array(list);
 	if (check_for_duplicates_and_range(number_list, arg_counter))
 	{
 		free(number_list);
@@ -75,29 +73,34 @@ int	parse_arguments(char **list, int flag, t_stack *stack)
 	}
 	return (EXIT_SUCCESS);
 }
-//parse_single_argument
-//parse_multiple_arguments
-//both call parse_arguments but the first also frees 
+
+int	parse_single_argument(char **arguments, t_stack *stack)
+{
+	int		exit_status;
+
+	exit_status = parse_arguments_and_create_stack(arguments, stack);
+	ft_free_str_array(arguments);
+	return (exit_status);
+}
+
 void	create_stack(int argc, char *argv[], t_stack *stack)
 {
 	char	**arguments;
-	int		*number_list;
 	int		exit_status;
 
 	arguments = NULL;
-	number_list = NULL;
 	exit_status = EXIT_SUCCESS;
 	if (argc == 1)
 		exit(EXIT_FAILURE);
 	else if (argc == 2)
 	{
 		arguments = ft_split(argv[1], ' ');
-		exit_status = parse_arguments(arguments, SINGLE_ARG, stack);
+		exit_status = parse_single_argument(arguments, stack);
 	}
 	else if (argc > 2)
 	{
 		arguments = argv + 1;
-		exit_status = parse_arguments(arguments, MULTI_ARG, stack);
+		exit_status = parse_arguments_and_create_stack(arguments, stack);
 	}
 	if (exit_status == EXIT_FAILURE)
 	{
