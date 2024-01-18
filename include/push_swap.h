@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:13:11 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/17 20:42:56 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/18 13:41:16 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int				count_args(char **list);
 t_stack_node	*find_last(t_stack *stack);
 void			create_node_and_append(t_stack *stack, int number);
 void			free_stack(t_stack	*stack);
-int				ft_atol(const char *nptr);
+long			ft_atol(const char *nptr);
 //movements.c
 void			swap(t_stack *stack);
 void			push(t_stack *stack_a, t_stack *stack_b);

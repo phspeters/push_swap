@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:05:14 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/17 20:43:26 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/18 13:31:48 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	parse_arguments_and_create_stack(char **list, t_stack *stack)
 	int		arg_counter;
 	long	*number_list;
 
-	number_list = malloc(sizeof(int) * count_args(list));
+	number_list = malloc(sizeof(long) * count_args(list));
 	arg_counter = -1;
 	while (list[++arg_counter])
 	{

@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:16:48 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/17 17:55:16 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/18 13:42:03 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int argc, char *argv[])
 		printf("stack_a: %i\n", current->number);
 		current = current->next;
 	}
-	printf("\n");
+	//printf("\n");
 	/*
 	current = stack_b.head;
 	while (current != NULL)

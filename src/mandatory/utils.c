@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:54:45 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/17 17:25:26 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/18 13:41:05 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	free_stack(t_stack *stack)
 	}
 }
 
-int	ft_atol(const char *nptr)
+long	ft_atol(const char *nptr)
 {
 	int		i;
 	int		s;
