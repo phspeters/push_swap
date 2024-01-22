@@ -6,58 +6,74 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:16:48 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/18 13:42:03 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/22 18:39:32 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	initialize_stacks(t_stack *stack_a, t_stack *stack_b)
+void	print_arguments(t_arguments arguments)
 {
-	stack_a->head = NULL;
-	stack_a->tail = NULL;
-	stack_a->stack_size = 0;
-	stack_b->head = NULL;
-	stack_b->tail = NULL;
-	stack_b->stack_size = 0;
+	int			i;
+
+	i = 0;
+	while (i < arguments.list_size)
+	{
+		ft_printf("arg %i: %i\n", i, arguments.numbers_list[i]);
+		i++;
+	}
 }
 
-int	main(int argc, char *argv[])
+void	print_stack_value(t_stack stack, t_arguments s_arguments)
 {
-	t_stack			stack_a;
-	t_stack			stack_b;
-	t_stack_node	*current;
+	int	i;
 
-	initialize_stacks(&stack_a, &stack_b);
-	create_stack(argc, argv, &stack_a);
-	/*
-	push(&stack_a, &stack_b);
-	push(&stack_a, &stack_b);
-	push(&stack_a, &stack_b);
-	rotate(&stack_b);
-	swap(&stack_b);
-	reverse_rotate(&stack_a);
-	push(&stack_a, &stack_b);
-	rotate(&stack_a);
-	push(&stack_a, &stack_b);
-	*/
-	current = stack_a.head;
-	while (current != NULL)
+	i = 0;
+	while (i < s_arguments.list_size)
 	{
-		printf("stack_a: %i\n", current->number);
-		current = current->next;
+		printf("element %i: value = %i\n", i, stack.list[i].value);
+		i++;
 	}
-	//printf("\n");
-	/*
-	current = stack_b.head;
-	while (current != NULL)
+}
+
+void	initialize_stacks(t_stack *stack_a, t_stack *stack_b,
+		t_arguments arguments)
+{
+	stack_a->list = malloc(sizeof(t_stack_element) * arguments.list_size);
+	stack_a->top = -1;
+	stack_b->list = malloc(sizeof(t_stack_element) * arguments.list_size);
+	stack_b->top = -1;
+}
+
+void	create_stack(t_stack *stack, t_arguments arguments)
+{
+	int	i;
+
+	i = 0;
+	while (i < arguments.list_size)
 	{
-		//printf("current: %p\n", current);
-		printf("stack_b: %i\n", current->number);
-		current = current->next;
+		stack->list[i].value = arguments.numbers_list[i];
+		stack->top++;
+		i++;
 	}
-	free_stack(&stack_b);
-	*/
-	free_stack(&stack_a);
+	return ;
+}
+
+int	main(int argc, char **argv)
+{
+	t_arguments	arguments;
+	t_stack		stack_a;
+	t_stack		stack_b;
+
+	arguments = parse_arguments(argc, argv);
+	initialize_stacks(&stack_a, &stack_b, arguments);
+	create_stack(&stack_a, arguments);
+	//rotate(&stack_a);
+	//reverse_rotate(&stack_a);
+	//swap(&stack_a);
+	//print_stack_value(stack_a, arguments);
+	free(stack_a.list);
+	free(stack_b.list);
+	free(arguments.numbers_list);
 	return (0);
 }

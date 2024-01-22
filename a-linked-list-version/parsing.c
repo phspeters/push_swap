@@ -6,13 +6,13 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:05:14 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/22 17:34:18 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/18 13:31:48 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_for_duplicates_and_int_range(long *list, int size)
+int	check_for_duplicates_and_range(long *list, int size)
 {
 	int	i;
 	int	j;
@@ -33,6 +33,7 @@ int	check_for_duplicates_and_int_range(long *list, int size)
 		}
 		i++;
 	}
+	free(list);
 	return (EXIT_SUCCESS);
 }
 
@@ -46,57 +47,64 @@ int	count_args(char **list)
 	return (arg_counter);
 }
 
-t_arguments	parse_multiple_arguments(char **list)
+int	parse_arguments_and_create_stack(char **list, t_stack *stack)
 {
-	t_arguments	arguments;
-	int			i;
+	int		arg_counter;
+	long	*number_list;
 
-	arguments.list_size = count_args(list);
-	arguments.numbers_list = malloc(sizeof(long) * arguments.list_size);
-	i = 0;
-	while (i < arguments.list_size)
+	number_list = malloc(sizeof(long) * count_args(list));
+	arg_counter = -1;
+	while (list[++arg_counter])
 	{
-		arguments.numbers_list[i] = ft_atol(list[i]);
-		if ((arguments.numbers_list[i] == 0) && (*list[i] != '0'))
+		number_list[arg_counter] = ft_atol(list[arg_counter]);
+		if ((number_list[arg_counter] == 0) && (*list[arg_counter] != '0'))
 		{
-			arguments.numbers_list = NULL;
+			free(number_list);
+			number_list = NULL;
 			break ;
 		}
-		i++;
+		create_node_and_append(stack, number_list[arg_counter]);
 	}
-	if (check_for_duplicates_and_int_range(arguments.numbers_list, i))
+	if (check_for_duplicates_and_range(number_list, arg_counter))
 	{
-		free(arguments.numbers_list);
-		arguments.numbers_list = NULL;
+		free(number_list);
+		free_stack(stack);
+		return (EXIT_FAILURE);
 	}
-	return (arguments);
+	return (EXIT_SUCCESS);
 }
 
-t_arguments	parse_single_argument(char *arg_sentence)
+int	parse_single_argument(char **arguments, t_stack *stack)
 {
-	char		**splitted;
-	t_arguments	arguments;
+	int		exit_status;
 
-	splitted = ft_split(arg_sentence, ' ');
-	arguments = parse_multiple_arguments(splitted);
-	ft_free_str_array(splitted);
-	return (arguments);
+	exit_status = parse_arguments_and_create_stack(arguments, stack);
+	ft_free_str_array(arguments);
+	return (exit_status);
 }
 
-t_arguments	parse_arguments(int argc, char **argv)
+void	create_stack(int argc, char *argv[], t_stack *stack)
 {
-	t_arguments	arguments;
+	char	**arguments;
+	int		exit_status;
 
+	arguments = NULL;
+	exit_status = EXIT_SUCCESS;
 	if (argc == 1)
 		exit(EXIT_FAILURE);
 	else if (argc == 2)
-		arguments = parse_single_argument(argv[1]);
+	{
+		arguments = ft_split(argv[1], ' ');
+		exit_status = parse_single_argument(arguments, stack);
+	}
 	else if (argc > 2)
-		arguments = parse_multiple_arguments(argv + 1);
-	if (!arguments.numbers_list)
+	{
+		arguments = argv + 1;
+		exit_status = parse_arguments_and_create_stack(arguments, stack);
+	}
+	if (exit_status == EXIT_FAILURE)
 	{
 		write(STDERR_FILENO, "Error\n", 7);
 		exit(EXIT_FAILURE);
 	}
-	return (arguments);
 }
