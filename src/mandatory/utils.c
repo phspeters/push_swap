@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:54:45 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/22 16:14:05 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/22 21:06:27 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,11 @@ long	ft_atol(const char *nptr)
 	if (nptr[i] != '\0')
 		return (0);
 	return (result * s);
+}
+
+void	free_data(t_stack *stack_a, t_stack *stack_b, t_arguments *arguments)
+{
+	free(stack_a->list);
+	free(stack_b->list);
+	free(arguments->numbers_list);
 }

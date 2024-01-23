@@ -6,33 +6,38 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:16:48 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/22 18:39:32 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/23 14:53:28 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_arguments(t_arguments arguments)
+void	rank_and_update_stack(t_stack *stack, t_arguments arguments)
 {
-	int			i;
+	t_stack_element	smallest;
+	int				previous_smallest;
+	int				rank;
+	int				i;
 
-	i = 0;
-	while (i < arguments.list_size)
+	smallest.value = INT_MAX;
+	previous_smallest = INT_MIN;
+	rank = -1;
+	i = -1;
+	while (++i <= stack->top)
 	{
-		ft_printf("arg %i: %i\n", i, arguments.numbers_list[i]);
-		i++;
-	}
-}
-
-void	print_stack_value(t_stack stack, t_arguments s_arguments)
-{
-	int	i;
-
-	i = 0;
-	while (i < s_arguments.list_size)
-	{
-		printf("element %i: value = %i\n", i, stack.list[i].value);
-		i++;
+		if (arguments.numbers_list[i] < smallest.value && \
+		arguments.numbers_list[i] > previous_smallest)
+		{
+			smallest.position = i;
+			smallest.value = arguments.numbers_list[i];
+		}
+		if (i == stack->top && ++rank <= stack->top)
+		{
+			stack->list[smallest.position].value = rank;
+			previous_smallest = smallest.value;
+			smallest.value = INT_MAX;
+			i = -1;
+		}
 	}
 }
 
@@ -53,6 +58,7 @@ void	create_stack(t_stack *stack, t_arguments arguments)
 	while (i < arguments.list_size)
 	{
 		stack->list[i].value = arguments.numbers_list[i];
+		stack->list[i].position = i;
 		stack->top++;
 		i++;
 	}
@@ -68,12 +74,7 @@ int	main(int argc, char **argv)
 	arguments = parse_arguments(argc, argv);
 	initialize_stacks(&stack_a, &stack_b, arguments);
 	create_stack(&stack_a, arguments);
-	//rotate(&stack_a);
-	//reverse_rotate(&stack_a);
-	//swap(&stack_a);
-	//print_stack_value(stack_a, arguments);
-	free(stack_a.list);
-	free(stack_b.list);
-	free(arguments.numbers_list);
+	rank_and_update_stack(&stack_a, arguments);
+	free_data(&stack_a, &stack_b, &arguments);
 	return (0);
 }

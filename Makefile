@@ -6,20 +6,20 @@
 #    By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:13:03 by pehenri2          #+#    #+#              #
-#    Updated: 2024/01/22 17:51:24 by pehenri2         ###   ########.fr        #
+#    Updated: 2024/01/23 10:18:17 by pehenri2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME				= push_swap
 BONUS_NAME			= checker
-CFLAGS				= -Wextra -Wall -Werror -Wunreachable-code -fsanitize=address #-Ofast
-#CFLAGS				= -Wextra -Wall -Werror -Wunreachable-code -g3 #-Ofast
+#CFLAGS				= -Wextra -Wall -Werror -Wunreachable-code -fsanitize=address #-Ofast
+CFLAGS				= -Wextra -Wall -Werror -Wunreachable-code -g3 #-Ofast
 LIBFT				= ./lib/libft
 CC					= cc
 HEADERS				= -I ./include -I $(LIBFT)
 LIBS				= $(LIBFT)/libft.a
 SRCS_PATH			= ./src/mandatory/
-FILES				= main.c parsing.c movements.c utils.c
+FILES				= main.c parsing.c movements.c utils.c debugging.c
 OBJS				= $(addprefix $(SRCS_PATH),$(FILES:%.c=%.o))
 BONUS_PATH			= ./src/bonus/
 BONUS_FILES			= $(wildcard *.c)
