@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:16:48 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/23 14:53:28 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:00:50 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,20 @@ void	create_stack(t_stack *stack, t_arguments arguments)
 	return ;
 }
 
+int	is_sorted(t_stack stack)
+{
+	int	i;
+
+	i = 0;
+	while (i <= stack.top)
+	{
+		if (stack.list[i].value != stack.list[i].position)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_arguments	arguments;
@@ -75,6 +89,8 @@ int	main(int argc, char **argv)
 	initialize_stacks(&stack_a, &stack_b, arguments);
 	create_stack(&stack_a, arguments);
 	rank_and_update_stack(&stack_a, arguments);
+	if (!is_sorted(stack_a))
+		sort_stack(&stack_a, &stack_b);
 	free_data(&stack_a, &stack_b, &arguments);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:13:11 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/23 14:36:45 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:17:13 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,34 @@ t_arguments	parse_single_argument(char *argv);
 t_arguments	parse_multiple_arguments(char **arguments);
 int			check_for_duplicates_and_int_range(long *list, int size);
 int			count_args(char **list);
+
 //utils.c
 long		ft_atol(const char *nptr);
 void		free_data(t_stack *stack_a, t_stack *stack_b,
 				t_arguments *arguments);
-//movements.c
-void		swap(t_stack *stack);
+
+//push.c
 void		push(t_stack *stack_a, t_stack *stack_b);
+void		pa(t_stack *stack_a, t_stack *stack_b);
+void		pb(t_stack *stack_a, t_stack *stack_b);
+
+//swap.c
+void		swap(t_stack *stack);
+void		sa(t_stack *stack);
+void		sb(t_stack *stack);
+void		ss(t_stack *stack_a, t_stack *stack_b);
+
+//rotate.c
 void		rotate(t_stack *stack);
+void		ra(t_stack *stack);
+void		rb(t_stack *stack);
+void		rr(t_stack *stack_a, t_stack *stack_b);
+
+//reverse_rotate.c
 void		reverse_rotate(t_stack *stack);
+void		rra(t_stack *stack);
+void		rrb(t_stack *stack);
+void		rrr(t_stack *stack_a, t_stack *stack_b);
 
 //debugging.c
 void		print_stack_value(t_stack stack, t_arguments s_arguments);
