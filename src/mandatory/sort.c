@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:00:58 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/24 18:32:42 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:58:09 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,28 @@ int	*get_lis(t_stack *stack)
 	return (temp);
 }
 
-void	sort_with_lis(t_stack *stack_a, t_stack *stack_b, int *lis)
+void	leave_lis_and_push_rest(t_stack *stack_a, t_stack *stack_b, int *lis)
 {
-	(void)stack_a;
-	(void)stack_b;
-	(void)lis;
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < size)
+	{
+		if (stack_a->list[stack_a->top].value == lis[i])
+		{
+			ra(stack_a);
+			i++;
+		}
+		else
+			pb(stack_a, stack_b);
+	}
+}
+
+void	leave_only_three(t_stack *stack_a, t_stack *stack_b)
+{
+	while (stack_a->top > 3)
+		pb(stack_a, stack_b);
 }
 
 void	sort(t_stack *stack_a, t_stack *stack_b)
@@ -58,6 +75,14 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 	else
 	{
 		lis = get_lis(stack_a);
-		sort_with_lis(stack_a, stack_b, lis);
+		if (lis)
+			leave_lis_and_push_rest(stack_a, stack_b, lis);
+		else
+			leave_only_three(stack_a, stack_b);
+		while (!sorted(stack_a, stack_b))
+		{
+			calculate_movement_costs(stack_a, stack_a);
+			make_cheapest_move(stack_a, stack_b);
+		}
 	}
 }
