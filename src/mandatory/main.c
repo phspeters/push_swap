@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:16:48 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/23 17:00:50 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/23 21:14:18 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	rank_and_update_stack(t_stack *stack, t_arguments arguments)
 		}
 		if (i == stack->top && ++rank <= stack->top)
 		{
-			stack->list[smallest.position].value = rank;
+			stack->list[stack->top - smallest.position].value = rank;
 			previous_smallest = smallest.value;
 			smallest.value = INT_MAX;
 			i = -1;
@@ -53,11 +53,13 @@ void	initialize_stacks(t_stack *stack_a, t_stack *stack_b,
 void	create_stack(t_stack *stack, t_arguments arguments)
 {
 	int	i;
+	int	size;
 
+	size = arguments.list_size;
 	i = 0;
-	while (i < arguments.list_size)
+	while (i < size)
 	{
-		stack->list[i].value = arguments.numbers_list[i];
+		stack->list[i].value = arguments.numbers_list[size - 1 - i];
 		stack->list[i].position = i;
 		stack->top++;
 		i++;
@@ -72,7 +74,7 @@ int	is_sorted(t_stack stack)
 	i = 0;
 	while (i <= stack.top)
 	{
-		if (stack.list[i].value != stack.list[i].position)
+		if (stack.list[i].value != (stack.top - stack.list[i].position))
 			return (0);
 		i++;
 	}
