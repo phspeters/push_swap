@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:16:48 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/23 21:14:18 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:33:10 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,16 @@ void	create_stack(t_stack *stack, t_arguments arguments)
 	return ;
 }
 
-int	is_sorted(t_stack stack)
+int	sorted(t_stack stack_a, t_stack stack_b)
 {
 	int	i;
 
+	if (stack_b.top != -1)
+		return (0);
 	i = 0;
-	while (i <= stack.top)
+	while (i <= stack_a.top)
 	{
-		if (stack.list[i].value != (stack.top - stack.list[i].position))
+		if (stack_a.list[i].value != (stack_a.top - stack_a.list[i].position))
 			return (0);
 		i++;
 	}
@@ -91,8 +93,9 @@ int	main(int argc, char **argv)
 	initialize_stacks(&stack_a, &stack_b, arguments);
 	create_stack(&stack_a, arguments);
 	rank_and_update_stack(&stack_a, arguments);
-	if (!is_sorted(stack_a))
-		sort_stack(&stack_a, &stack_b);
+	if (!sorted(stack_a, stack_b))
+		sort(&stack_a, &stack_b);
+	print_stack_elements(stack_a);
 	free_data(&stack_a, &stack_b, &arguments);
 	return (0);
 }

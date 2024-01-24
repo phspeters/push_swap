@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 20:59:34 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/23 14:52:25 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:33:46 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	print_stack_elements(t_stack stack)
 	int	i;
 
 	i = 0;
+	ft_printf("\n");
 	while (i <= stack.top)
 	{
 		ft_printf("value = %i\tposition = %i\n", \

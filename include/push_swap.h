@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:13:11 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/23 18:17:13 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:09:47 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ t_arguments	parse_single_argument(char *argv);
 t_arguments	parse_multiple_arguments(char **arguments);
 int			check_for_duplicates_and_int_range(long *list, int size);
 int			count_args(char **list);
+
+//sort.c
+void		sort(t_stack *stack_a, t_stack *stack_b);
 
 //utils.c
 long		ft_atol(const char *nptr);
