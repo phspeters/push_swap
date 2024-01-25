@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:57:57 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/23 18:10:24 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:45:22 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void	rotate(t_stack *stack)
 
 	if (stack->top < 1)
 		return ;
-	swap_value = stack->list[stack->top].value;
+	swap_value = stack->items[stack->top].value;
 	i = stack->top;
 	while (i > 0)
 	{
-		stack->list[i].value = stack->list[i - 1].value;
+		stack->items[i].value = stack->items[i - 1].value;
 		i--;
 	}
-	stack->list[0].value = swap_value;
+	stack->items[0].value = swap_value;
 }
 
 void	ra(t_stack *stack)

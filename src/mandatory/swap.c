@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:57:23 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/23 18:02:59 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:47:34 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	swap(t_stack *stack)
 
 	if (stack->top < 1)
 		return ;
-	value_swap = stack->list[stack->top].value;
-	stack->list[stack->top].value = stack->list[stack->top - 1].value;
-	stack->list[stack->top - 1].value = value_swap;
+	value_swap = stack->items[stack->top].value;
+	stack->items[stack->top].value = stack->items[stack->top - 1].value;
+	stack->items[stack->top - 1].value = value_swap;
 }
 
 void	sa(t_stack *stack)

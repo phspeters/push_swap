@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 20:59:34 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/24 18:33:46 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:49:32 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	print_arguments(t_arguments arguments)
 	int			i;
 
 	i = 0;
-	while (i < arguments.list_size)
+	while (i < arguments.size)
 	{
-		ft_printf("arg %i: %i\n", i, arguments.numbers_list[i]);
+		ft_printf("arg %i: %i\n", i, arguments.numbers[i]);
 		i++;
 	}
 }
@@ -29,14 +29,14 @@ void	print_stack_value(t_stack stack, t_arguments s_arguments)
 	int	i;
 
 	i = 0;
-	while (i < s_arguments.list_size)
+	while (i < s_arguments.size)
 	{
-		printf("element %i: value = %i\n", i, stack.list[i].value);
+		printf("item %i: value = %i\n", i, stack.items[i].value);
 		i++;
 	}
 }
 
-void	print_stack_elements(t_stack stack)
+void	print_stack_items(t_stack stack)
 {
 	int	i;
 
@@ -45,7 +45,7 @@ void	print_stack_elements(t_stack stack)
 	while (i <= stack.top)
 	{
 		ft_printf("value = %i\tposition = %i\n", \
-			stack.list[i].value, stack.list[i].position);
+			stack.items[i].value, stack.items[i].arr_index);
 		i++;
 	}
 	ft_printf("\n");

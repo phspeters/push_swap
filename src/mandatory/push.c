@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:57:55 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/23 18:06:24 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:44:30 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	push(t_stack *origin, t_stack *destination)
 	if (origin->top < 0)
 		return ;
 	destination->top++;
-	destination->list[destination->top].value = origin->list[origin->top].value;
+	destination->items[destination->top].value = \
+											origin->items[origin->top].value;
 	origin->top--;
 }
 

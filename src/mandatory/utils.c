@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:54:45 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/22 21:06:27 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:47:52 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ long	ft_atol(const char *nptr)
 
 void	free_data(t_stack *stack_a, t_stack *stack_b, t_arguments *arguments)
 {
-	free(stack_a->list);
-	free(stack_b->list);
-	free(arguments->numbers_list);
+	free(stack_a->items);
+	free(stack_b->items);
+	free(arguments->numbers);
 }

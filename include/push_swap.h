@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:13:11 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/24 18:09:47 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:54:34 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,31 @@
 # include <stdio.h>
 # include <limits.h>
 
-typedef struct s_stack_element
+typedef struct s_arguments
 {
-	int	value;
-	int	position;
-	int	stack_a_movement_cost;
-	int	stack_b_movement_cost;
-}	t_stack_element;
+	int		size;
+	long	*numbers;
+}	t_arguments;
 
 typedef struct s_stack
 {
-	int				top;
-	t_stack_element	*list;
+	int		top;
+	t_item	*items;
 }	t_stack;
 
-typedef struct s_arguments
+typedef struct s_item
 {
-	int		list_size;
-	long	*numbers_list;
-}	t_arguments;
+	int	value;
+	int	arr_index;
+	int	stack_a_movement_cost;
+	int	stack_b_movement_cost;
+}	t_item;
+
+typedef struct s_longest_increasing_subsequence
+{
+	int	*sequence;
+	int	size;
+}	t_lis;
 
 //parsing.c
 t_arguments	parse_arguments(int argc, char **argv);
@@ -80,6 +86,6 @@ void		rrr(t_stack *stack_a, t_stack *stack_b);
 //debugging.c
 void		print_stack_value(t_stack stack, t_arguments s_arguments);
 void		print_arguments(t_arguments arguments);
-void		print_stack_elements(t_stack stack);
+void		print_stack_items(t_stack stack);
 
 #endif
