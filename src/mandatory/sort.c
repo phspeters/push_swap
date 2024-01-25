@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:00:58 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/25 14:11:16 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:31:37 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,20 @@ void	sort_three_numbers(t_stack *stack)
 
 t_lis	get_lis(t_stack *stack)
 {
-	t_lis	temp;
+	t_lis	lis;
+	int		*supporting;
+	int		*breadcrumbs;
+	int		i;
+	int		j;
 
-	temp.size = 0;
-	(void)stack;
-	return (temp);
+	supporting = malloc(sizeof(int) * stack->top);
+	breadcrumbs = malloc(sizeof(int) * stack->top);
+	i = 0;
+	while (i <= stack->top)
+	{
+		
+	}
+	return (lis);
 }
 
 void	leave_lis_and_push_rest(t_stack *stack_a, t_stack *stack_b, t_lis lis)

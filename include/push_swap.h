@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:13:11 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/25 13:54:34 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/25 14:13:18 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_stack
 	t_item	*items;
 }	t_stack;
 
-typedef struct s_item
+typedef struct s_stack_item
 {
 	int	value;
 	int	arr_index;
