@@ -6,11 +6,28 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:00:58 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/25 18:31:37 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/26 20:05:22 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	sorted(t_stack stack_a, t_stack stack_b)
+{
+	int	i;
+
+	if (stack_b.top != -1)
+		return (0);
+	i = 0;
+	while (i <= stack_a.top)
+	{
+		if (stack_a.items[i].value != \
+		(stack_a.top - stack_a.items[i].arr_index))
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 void	sort_three_numbers(t_stack *stack)
 {
@@ -33,24 +50,6 @@ void	sort_three_numbers(t_stack *stack)
 		sa(stack);
 }
 
-t_lis	get_lis(t_stack *stack)
-{
-	t_lis	lis;
-	int		*supporting;
-	int		*breadcrumbs;
-	int		i;
-	int		j;
-
-	supporting = malloc(sizeof(int) * stack->top);
-	breadcrumbs = malloc(sizeof(int) * stack->top);
-	i = 0;
-	while (i <= stack->top)
-	{
-		
-	}
-	return (lis);
-}
-
 void	leave_lis_and_push_rest(t_stack *stack_a, t_stack *stack_b, t_lis lis)
 {
 	int	i;
@@ -69,6 +68,7 @@ void	leave_lis_and_push_rest(t_stack *stack_a, t_stack *stack_b, t_lis lis)
 			while (stack_a->items[stack_a->top].value != lis.sequence[0])
 				pb(stack_a, stack_b);
 	}
+	free(lis.sequence);
 }
 
 void	leave_only_three(t_stack *stack_a, t_stack *stack_b)
@@ -90,10 +90,11 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 			leave_lis_and_push_rest(stack_a, stack_b, lis);
 		else
 			leave_only_three(stack_a, stack_b);
-		while (!sorted(stack_a, stack_b))
-		{
-			calculate_movement_costs(stack_a, stack_a);
-			make_cheapest_move(stack_a, stack_b);
-		}
+		calculate_stack_positions(stack_b);
+		//while (!sorted(*stack_a, *stack_b))
+		//{
+		//	calculate_movement_costs(stack_a, stack_a);
+		//	make_cheapest_move(stack_a, stack_b);
+		//}
 	}
 }

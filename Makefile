@@ -6,7 +6,7 @@
 #    By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:13:03 by pehenri2          #+#    #+#              #
-#    Updated: 2024/01/24 18:09:24 by pehenri2         ###   ########.fr        #
+#    Updated: 2024/01/26 20:06:59 by pehenri2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CC					= cc
 HEADERS				= -I ./include -I $(LIBFT)
 LIBS				= $(LIBFT)/libft.a
 SRCS_PATH			= ./src/mandatory/
-FILES				= main.c parsing.c utils.c push.c sort.c swap.c rotate.c reverse_rotate.c debugging.c
+FILES				= main.c parsing.c utils.c push.c sort.c lis.c cost.c swap.c rotate.c reverse_rotate.c debugging.c
 OBJS				= $(addprefix $(SRCS_PATH),$(FILES:%.c=%.o))
 BONUS_PATH			= ./src/bonus/
 BONUS_FILES			= $(wildcard *.c)

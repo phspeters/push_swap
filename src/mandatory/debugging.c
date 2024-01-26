@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 20:59:34 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/25 13:49:32 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/26 19:35:50 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,17 @@ void	print_stack_items(t_stack stack)
 		i++;
 	}
 	ft_printf("\n");
+}
+
+void	print_lis(t_lis lis)
+{
+	int	i;
+
+	ft_printf("size: %i\n", lis.size);
+	i = 0;
+	while (i < lis.size)
+	{
+		ft_printf("\tlis[%i]: %i\n", i, lis.sequence[i]);
+		i++;
+	}
 }
