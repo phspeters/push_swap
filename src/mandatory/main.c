@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:16:48 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/26 20:06:45 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/27 16:26:09 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ int	main(int argc, char **argv)
 	rank_and_update_stack(&stack_a, arguments);
 	if (!sorted(stack_a, stack_b))
 		sort(&stack_a, &stack_b);
-	print_stack_items(stack_a);
-	print_stack_items(stack_b);
 	free_data(&stack_a, &stack_b, &arguments);
 	return (0);
 }

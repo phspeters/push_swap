@@ -6,7 +6,7 @@
 #    By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:13:03 by pehenri2          #+#    #+#              #
-#    Updated: 2024/01/26 20:06:59 by pehenri2         ###   ########.fr        #
+#    Updated: 2024/01/27 20:16:20 by pehenri2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,16 +19,16 @@ CC					= cc
 HEADERS				= -I ./include -I $(LIBFT)
 LIBS				= $(LIBFT)/libft.a
 SRCS_PATH			= ./src/mandatory/
-FILES				= main.c parsing.c utils.c push.c sort.c lis.c cost.c swap.c rotate.c reverse_rotate.c debugging.c
+FILES				= main.c parsing.c utils.c push.c sort.c lis.c cost.c move.c swap.c rotate.c reverse_rotate.c debugging.c
 OBJS				= $(addprefix $(SRCS_PATH),$(FILES:%.c=%.o))
 BONUS_PATH			= ./src/bonus/
 BONUS_FILES			= $(wildcard *.c)
 BONUS_OBJS			= $(addprefix $(BONUS_PATH),$(BONUS_FILES:%.c=%.o))
 EXE					?= 	push_swap
 
-all: libft $(NAME)
+all: $(NAME)
 
-bonus: libft $(NAME_BONUS)
+bonus: $(NAME_BONUS)
 
 libft:
 	@make -C $(LIBFT) --silent
@@ -36,10 +36,10 @@ libft:
 %.o: %.c
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<\n)"
 
-$(NAME): $(OBJS)
+$(NAME): libft $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 
-$(BONUS_NAME): $(BONUS_OBJS)
+$(BONUS_NAME): libft $(BONUS_OBJS)
 	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBS) $(HEADERS) -o $(BONUS_NAME)
 
 clean:
@@ -66,4 +66,28 @@ val: all bonus
          --log-file=valgrind-out.txt \
 		 ./$(EXE) $(ARG)
 
-.PHONY: all, clean, fclean, re, norm, val
+test3: $(NAME)	
+		$(eval ARG = $(shell shuf -i 0-50 -n 3))
+		./push_swap $(ARG) | ./checker_linux $(ARG)
+		@echo -n "Instructions: "
+		@./push_swap $(ARG) | wc -l
+
+test5: $(NAME)	
+		$(eval ARG = $(shell shuf -i 0-50 -n 5))
+		./push_swap $(ARG) | ./checker_linux $(ARG)
+		@echo -n "Instructions: "
+		@./push_swap $(ARG) | wc -l
+
+test100: $(NAME)	
+		$(eval ARG = $(shell shuf -i 0-1000 -n 100))
+		./push_swap $(ARG) | ./checker_linux $(ARG)
+		@echo -n "Instructions: "
+		@./push_swap $(ARG) | wc -l
+
+test500: $(NAME)	
+		$(eval ARG = $(shell shuf -i 0-2000 -n 500))
+		./push_swap $(ARG) | ./checker_linux $(ARG)
+		@echo -n "Instructions: "
+		@./push_swap $(ARG) | wc -l
+
+.PHONY: all, clean, fclean, re, norm, val, test3, test5, test100, test500

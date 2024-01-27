@@ -6,11 +6,52 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:00:58 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/26 20:05:22 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/27 20:51:25 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	in_order(t_stack stack_a, t_stack stack_b)
+{
+	int	i;
+
+	if (stack_b.top >= 0)
+		return (0);
+	i = stack_a.top;
+	while (i > 0)
+	{
+		if (((stack_a.items[i].value + 1) % (stack_a.top + 1)) != (stack_a.items[i - 1].value))
+			return (0);
+		i--;
+	}
+	return (1);
+}
+
+void	rotate_until_sorted(t_stack *stack_a)
+{
+	int	i;
+	int	middle;
+
+	middle = stack_a->top / 2;
+	i = stack_a->top;
+	while (i >= 0)
+	{
+		if (stack_a->items[i].value == 0)
+			break ;
+		i--;
+	}
+	if (stack_a->items[i].arr_index >= middle)
+	{
+		while (stack_a->items[i].value != stack_a->top - stack_a->items[i].arr_index)
+			ra(stack_a);
+	}
+	else
+	{
+		while (stack_a->items[i].value != stack_a->top - stack_a->items[i].arr_index)
+			rra(stack_a);
+	}
+}
 
 int	sorted(t_stack stack_a, t_stack stack_b)
 {
@@ -73,13 +114,14 @@ void	leave_lis_and_push_rest(t_stack *stack_a, t_stack *stack_b, t_lis lis)
 
 void	leave_only_three(t_stack *stack_a, t_stack *stack_b)
 {
-	while (stack_a->top > 3)
+	while (stack_a->top > 2)
 		pb(stack_a, stack_b);
 }
 
 void	sort(t_stack *stack_a, t_stack *stack_b)
 {
 	t_lis	lis;
+	t_item	cheapest;
 
 	if (stack_a->top < 3)
 		sort_three_numbers(stack_a);
@@ -89,12 +131,17 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 		if (lis.sequence)
 			leave_lis_and_push_rest(stack_a, stack_b, lis);
 		else
+		{
 			leave_only_three(stack_a, stack_b);
+			sort_three_numbers(stack_a);
+		}
 		calculate_stack_positions(stack_b);
-		//while (!sorted(*stack_a, *stack_b))
-		//{
-		//	calculate_movement_costs(stack_a, stack_a);
-		//	make_cheapest_move(stack_a, stack_b);
-		//}
+		while (!in_order(*stack_a, *stack_b))
+		{
+			cheapest = calculate_movement_costs(stack_a, stack_b);
+			make_cheapest_move(cheapest, stack_a, stack_b);
+		}
+		if (!sorted(*stack_a, *stack_b))
+			rotate_until_sorted(stack_a);
 	}
 }

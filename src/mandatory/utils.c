@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:54:45 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/26 19:56:49 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/27 12:25:39 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,20 @@ void	calculate_stack_positions(t_stack *stack)
 		stack->items[i].arr_index = i;
 		i++;
 	}
+}
+
+int	max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	else
+		return (b);
+}
+
+int	min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	else
+		return (b);
 }

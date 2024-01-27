@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:53:22 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/26 19:38:39 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/27 18:30:08 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	*get_lis_numbers(t_item *sequence, int *index_of_previous_element, int highe
 	int	j;
 
 	lis = malloc(sizeof(int) * lis_size);
+	if (!lis)
+		exit(ft_printf("Malloc failed\n"));
 	j = highest_element_index;
 	i = lis_size - 1;
 	while (i >= 0)
@@ -36,8 +38,10 @@ t_lis	get_lis(t_stack *stack)
 	int		i;
 	int		j;
 
-	lis.size_ending_in_original_index = malloc(sizeof(int) * stack->top);
-	lis.original_index_of_previous_element = malloc(sizeof(int) * stack->top);
+	lis.size_ending_in_original_index = malloc(sizeof(int) * (stack->top + 1));
+	lis.original_index_of_previous_element = malloc(sizeof(int) * (stack->top + 1));
+	if (!lis.size_ending_in_original_index || !lis.original_index_of_previous_element)
+		exit(ft_printf("Malloc failed\n"));
 	lis.highest_element_original_index = 0;
 	lis.size = 0;
 	i = -1;

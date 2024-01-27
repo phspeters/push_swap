@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:13:11 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/26 20:01:02 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/27 20:05:16 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_stack_item
 	int	arr_index;
 	int	stack_a_movement_cost;
 	int	stack_b_movement_cost;
+	int	combined_cost;
 }	t_item;
 
 typedef struct s_stack
@@ -65,14 +66,17 @@ int			sorted(t_stack stack_a, t_stack stack_b);
 t_lis		get_lis(t_stack *stack);
 
 //cost.c
-void		calculate_movement_costs(t_stack *stack_a, t_stack *stack_b);
-void		make_cheapest_move(t_stack *stack_a, t_stack *stack_b);
+t_item		calculate_movement_costs(t_stack *stack_a, t_stack *stack_b);
 
+//move.c
+void		make_cheapest_move(t_item cheapest_item, t_stack *stack_a, t_stack *stack_b);
 //utils.c
 long		ft_atol(const char *nptr);
 void		free_data(t_stack *stack_a, t_stack *stack_b,
 				t_arguments *arguments);
 void		calculate_stack_positions(t_stack *stack);
+int			max(int a, int b);
+int			min(int a, int b);
 
 //push.c
 void		push(t_stack *stack_a, t_stack *stack_b);
@@ -98,9 +102,10 @@ void		rrb(t_stack *stack);
 void		rrr(t_stack *stack_a, t_stack *stack_b);
 
 //debugging.c
-void		print_stack_value(t_stack stack, t_arguments s_arguments);
+void		print_item(t_item item);
 void		print_arguments(t_arguments arguments);
 void		print_stack_items(t_stack stack);
 void		print_lis(t_lis lis);
+void		print_both_stacks(t_stack stack_a, t_stack stack_b);
 
 #endif
