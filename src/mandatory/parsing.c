@@ -6,44 +6,41 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:05:14 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/25 13:42:45 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:16:53 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_for_duplicates_and_int_range(long *numbers, int size)
+t_arguments	parse_arguments(int argc, char **argv)
 {
-	int	i;
-	int	j;
+	t_arguments	arguments;
 
-	if (numbers == NULL)
-		return (EXIT_FAILURE);
-	i = 0;
-	while (i < size)
+	if (argc == 1)
+		exit(EXIT_FAILURE);
+	else if (argc == 2)
+		arguments = parse_single_argument(argv[1]);
+	else if (argc > 2)
+		arguments = parse_multiple_arguments(argv + 1);
+	if (!arguments.numbers)
 	{
-		if ((numbers[i] > INT_MAX) || (numbers[i] < INT_MIN))
-			return (EXIT_FAILURE);
-		j = i + 1;
-		while (j < size)
-		{
-			if (numbers[i] == numbers[j])
-				return (EXIT_FAILURE);
-			j++;
-		}
-		i++;
+		write(STDERR_FILENO, "Error\n", 7);
+		exit(EXIT_FAILURE);
 	}
-	return (EXIT_SUCCESS);
+	return (arguments);
 }
 
-int	count_args(char **list)
+t_arguments	parse_single_argument(char *arg_sentence)
 {
-	int	arg_counter;
+	char		**splitted;
+	t_arguments	arguments;
 
-	arg_counter = 0;
-	while (list[arg_counter])
-		arg_counter++;
-	return (arg_counter);
+	splitted = ft_split(arg_sentence, ' ');
+	if (!splitted)
+		exit(ft_printf("Malloc failed\n"));
+	arguments = parse_multiple_arguments(splitted);
+	ft_free_str_array(splitted);
+	return (arguments);
 }
 
 t_arguments	parse_multiple_arguments(char **list)
@@ -74,33 +71,36 @@ t_arguments	parse_multiple_arguments(char **list)
 	return (arguments);
 }
 
-t_arguments	parse_single_argument(char *arg_sentence)
+int	count_args(char **list)
 {
-	char		**splitted;
-	t_arguments	arguments;
+	int	arg_counter;
 
-	splitted = ft_split(arg_sentence, ' ');
-	if (!splitted)
-		exit(ft_printf("Malloc failed\n"));
-	arguments = parse_multiple_arguments(splitted);
-	ft_free_str_array(splitted);
-	return (arguments);
+	arg_counter = 0;
+	while (list[arg_counter])
+		arg_counter++;
+	return (arg_counter);
 }
 
-t_arguments	parse_arguments(int argc, char **argv)
+int	check_for_duplicates_and_int_range(long *numbers, int size)
 {
-	t_arguments	arguments;
+	int	i;
+	int	j;
 
-	if (argc == 1)
-		exit(EXIT_FAILURE);
-	else if (argc == 2)
-		arguments = parse_single_argument(argv[1]);
-	else if (argc > 2)
-		arguments = parse_multiple_arguments(argv + 1);
-	if (!arguments.numbers)
+	if (numbers == NULL)
+		return (EXIT_FAILURE);
+	i = 0;
+	while (i < size)
 	{
-		write(STDERR_FILENO, "Error\n", 7);
-		exit(EXIT_FAILURE);
+		if ((numbers[i] > INT_MAX) || (numbers[i] < INT_MIN))
+			return (EXIT_FAILURE);
+		j = i + 1;
+		while (j < size)
+		{
+			if (numbers[i] == numbers[j])
+				return (EXIT_FAILURE);
+			j++;
+		}
+		i++;
 	}
-	return (arguments);
+	return (EXIT_SUCCESS);
 }

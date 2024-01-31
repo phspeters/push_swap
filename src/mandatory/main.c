@@ -6,39 +6,26 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:16:48 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/27 16:26:09 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:48:26 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rank_and_update_stack(t_stack *stack, t_arguments arguments)
+int	main(int argc, char **argv)
 {
-	t_item	smallest;
-	int		previous_smallest;
-	int		rank;
-	int		i;
+	t_arguments	arguments;
+	t_stack		stack_a;
+	t_stack		stack_b;
 
-	smallest.value = INT_MAX;
-	previous_smallest = INT_MIN;
-	rank = -1;
-	i = -1;
-	while (++i <= stack->top)
-	{
-		if (arguments.numbers[i] < smallest.value
-			&& arguments.numbers[i] > previous_smallest)
-		{
-			smallest.arr_index = i;
-			smallest.value = arguments.numbers[i];
-		}
-		if (i == stack->top && ++rank <= stack->top)
-		{
-			stack->items[stack->top - smallest.arr_index].value = rank;
-			previous_smallest = smallest.value;
-			smallest.value = INT_MAX;
-			i = -1;
-		}
-	}
+	arguments = parse_arguments(argc, argv);
+	initialize_stacks(&stack_a, &stack_b, arguments);
+	populate_stack(&stack_a, arguments);
+	rank_and_update_stack_values(&stack_a, arguments);
+	if (!sorted(stack_a, stack_b))
+		sort(&stack_a, &stack_b);
+	free_data(&stack_a, &stack_b, &arguments);
+	return (0);
 }
 
 void	initialize_stacks(t_stack *stack_a, t_stack *stack_b,
@@ -54,7 +41,7 @@ void	initialize_stacks(t_stack *stack_a, t_stack *stack_b,
 	stack_b->top = -1;
 }
 
-void	create_stack(t_stack *stack, t_arguments arguments)
+void	populate_stack(t_stack *stack, t_arguments arguments)
 {
 	int	i;
 	int	size;
@@ -65,24 +52,37 @@ void	create_stack(t_stack *stack, t_arguments arguments)
 	{
 		stack->items[i].value = arguments.numbers[size - 1 - i];
 		stack->items[i].arr_index = i;
-		stack->top++;
 		i++;
 	}
-	return ;
+	stack->top = i - 1;
+	stack->max_size = i;
 }
 
-int	main(int argc, char **argv)
+void	rank_and_update_stack_values(t_stack *stack, t_arguments arguments)
 {
-	t_arguments	arguments;
-	t_stack		stack_a;
-	t_stack		stack_b;
+	t_item	smallest_item;
+	int		previous_smallest;
+	int		rank;
+	int		i;
 
-	arguments = parse_arguments(argc, argv);
-	initialize_stacks(&stack_a, &stack_b, arguments);
-	create_stack(&stack_a, arguments);
-	rank_and_update_stack(&stack_a, arguments);
-	if (!sorted(stack_a, stack_b))
-		sort(&stack_a, &stack_b);
-	free_data(&stack_a, &stack_b, &arguments);
-	return (0);
+	smallest_item.value = INT_MAX;
+	previous_smallest = INT_MIN;
+	rank = -1;
+	i = -1;
+	while (++i <= stack->top)
+	{
+		if (arguments.numbers[i] < smallest_item.value
+			&& arguments.numbers[i] > previous_smallest)
+		{
+			smallest_item.arr_index = i;
+			smallest_item.value = arguments.numbers[i];
+		}
+		if (i == stack->top && ++rank <= stack->top)
+		{
+			stack->items[stack->top - smallest_item.arr_index].value = rank;
+			previous_smallest = smallest_item.value;
+			smallest_item.value = INT_MAX;
+			i = -1;
+		}
+	}
 }
