@@ -6,7 +6,7 @@
 #    By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:13:03 by pehenri2          #+#    #+#              #
-#    Updated: 2024/01/27 20:16:20 by pehenri2         ###   ########.fr        #
+#    Updated: 2024/02/01 18:21:52 by pehenri2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,16 +19,16 @@ CC					= cc
 HEADERS				= -I ./include -I $(LIBFT)
 LIBS				= $(LIBFT)/libft.a
 SRCS_PATH			= ./src/mandatory/
-FILES				= main.c parsing.c utils.c push.c sort.c lis.c cost.c move.c swap.c rotate.c reverse_rotate.c debugging.c
+FILES				= main.c parsing.c utils.c push.c sort.c lis.c cost.c move.c swap.c rotate.c reverse_rotate.c
 OBJS				= $(addprefix $(SRCS_PATH),$(FILES:%.c=%.o))
 BONUS_PATH			= ./src/bonus/
-BONUS_FILES			= $(wildcard *.c)
+BONUS_FILES			= main.c parsing.c instructions.c utils.c push.c reverse_rotate.c rotate.c swap.c
 BONUS_OBJS			= $(addprefix $(BONUS_PATH),$(BONUS_FILES:%.c=%.o))
 EXE					?= 	push_swap
 
 all: $(NAME)
 
-bonus: $(NAME_BONUS)
+bonus: $(BONUS_NAME)
 
 libft:
 	@make -C $(LIBFT) --silent
