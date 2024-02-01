@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:57:57 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/01 14:05:42 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/01 19:36:20 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,15 @@ void	rotate(t_stack *stack)
 void	ra(t_stack *stack)
 {
 	rotate(stack);
-	write(1, "ra\n", 3);
 }
 
 void	rb(t_stack *stack)
 {
 	rotate(stack);
-	write(1, "rb\n", 3);
 }
 
 void	rr(t_stack *stack_a, t_stack *stack_b)
 {
 	rotate(stack_a);
 	rotate(stack_b);
-	write(1, "rr\n", 3);
 }

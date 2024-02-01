@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:53:22 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/01 14:12:08 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/01 20:43:27 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	initialize_lis_parameters(t_lis *lis, t_stack stack)
 		= malloc(sizeof(int) * (stack.max_size));
 	if (!lis->size_ending_in_original_index
 		|| !lis->original_index_of_previous_element)
-		exit(ft_printf("Malloc failed\n"));
+		exit(ft_fprintf(STDERR_FILENO, "Malloc failed\n"));
 	lis->highest_element_original_index = 0;
 	lis->size = 0;
 	i = -1;
@@ -79,7 +79,7 @@ int	*get_lis_numbers(t_item *items, t_lis *lis)
 	{
 		sequence = malloc(sizeof(int) * lis->size);
 		if (!sequence)
-			exit(ft_printf("Malloc failed\n"));
+			exit(ft_fprintf(STDERR_FILENO, "Malloc failed\n"));
 		j = lis->highest_element_original_index;
 		i = lis->size - 1;
 		while (i >= 0)

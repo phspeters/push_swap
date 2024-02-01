@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:30:58 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/01 18:24:17 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/01 20:43:19 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ void	initialize_stacks(t_stack *stack_a, t_stack *stack_b,
 {
 	stack_a->items = malloc(sizeof(t_item) * arguments.size);
 	if (!stack_a->items)
-		exit(ft_printf("Malloc failed\n"));
+		exit(ft_fprintf(STDERR_FILENO, "Malloc failed\n"));
 	stack_a->top = -1;
 	stack_b->items = malloc(sizeof(t_item) * arguments.size);
 	if (!stack_b->items)
-		exit(ft_printf("Malloc failed\n"));
+		exit(ft_fprintf(STDERR_FILENO, "Malloc failed\n"));
 	stack_b->top = -1;
 }
 

@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:16:48 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/01 18:28:03 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/01 20:43:22 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void	initialize_stacks(t_stack *stack_a, t_stack *stack_b,
 {
 	stack_a->items = malloc(sizeof(t_item) * arguments.size);
 	if (!stack_a->items)
-		exit(ft_printf("Malloc failed\n"));
+		exit(ft_fprintf(STDERR_FILENO, "Malloc failed\n"));
 	stack_a->top = -1;
 	stack_b->items = malloc(sizeof(t_item) * arguments.size);
 	if (!stack_b->items)
-		exit(ft_printf("Malloc failed\n"));
+		exit(ft_fprintf(STDERR_FILENO, "Malloc failed\n"));
 	stack_b->top = -1;
 }
 
@@ -61,17 +61,17 @@ void	populate_stack(t_stack *stack, t_arguments arguments)
 void	rank_and_update_stack_values(t_stack *stack, t_arguments arguments)
 {
 	t_item	smallest_item;
-	int		previous_smallest;
+	long	previous_smallest;
 	int		rank;
 	int		i;
 
 	smallest_item.value = INT_MAX;
-	previous_smallest = INT_MIN;
+	previous_smallest = LONG_MIN;
 	rank = -1;
 	i = -1;
 	while (++i <= stack->top)
 	{
-		if (arguments.numbers[i] < smallest_item.value
+		if (arguments.numbers[i] <= smallest_item.value
 			&& arguments.numbers[i] > previous_smallest)
 		{
 			smallest_item.arr_index = i;

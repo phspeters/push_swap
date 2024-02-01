@@ -6,14 +6,14 @@
 #    By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:13:03 by pehenri2          #+#    #+#              #
-#    Updated: 2024/02/01 18:21:52 by pehenri2         ###   ########.fr        #
+#    Updated: 2024/02/01 20:49:00 by pehenri2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME				= push_swap
 BONUS_NAME			= checker
 #CFLAGS				= -Wextra -Wall -Werror -Wunreachable-code -fsanitize=address #-Ofast
-CFLAGS				= -Wextra -Wall -Werror -Wunreachable-code -g3 #-Ofast
+CFLAGS				= -Wextra -Wall -Werror -Wunreachable-code -g3
 LIBFT				= ./lib/libft
 CC					= cc
 HEADERS				= -I ./include -I $(LIBFT)

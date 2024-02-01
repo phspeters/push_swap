@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 19:58:35 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/31 19:01:54 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/01 19:48:39 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 t_item	calculate_movement_costs(t_stack *stack_a, t_stack *stack_b)
 {
 	t_item	cheapest_item;
-	int		index;
 	int		cheapest_move;
+	int		index;
 
 	cheapest_move = INT_MAX;
 	index = stack_b->top;

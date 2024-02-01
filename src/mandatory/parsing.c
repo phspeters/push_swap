@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:05:14 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/31 18:16:53 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/01 20:32:37 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,30 @@ t_arguments	parse_arguments(int argc, char **argv)
 	else if (argc > 2)
 		arguments = parse_multiple_arguments(argv + 1);
 	if (!arguments.numbers)
-	{
-		write(STDERR_FILENO, "Error\n", 7);
-		exit(EXIT_FAILURE);
-	}
+		exit(ft_fprintf(STDERR_FILENO, "Error\n"));
 	return (arguments);
 }
 
 t_arguments	parse_single_argument(char *arg_sentence)
 {
-	char		**splitted;
 	t_arguments	arguments;
+	char		**splitted;
+	int			has_digits;
+	int			i;
 
+	i = 0;
+	has_digits = 0;
+	while (arg_sentence[i] && !has_digits)
+	{
+		if (ft_isdigit(arg_sentence[i]))
+			has_digits = 1;
+		i++;
+	}
+	if (!has_digits)
+		exit(ft_fprintf(STDERR_FILENO, "Error\n"));
 	splitted = ft_split(arg_sentence, ' ');
 	if (!splitted)
-		exit(ft_printf("Malloc failed\n"));
+		exit(ft_fprintf(STDERR_FILENO, "Malloc failed\n"));
 	arguments = parse_multiple_arguments(splitted);
 	ft_free_str_array(splitted);
 	return (arguments);
@@ -51,7 +60,7 @@ t_arguments	parse_multiple_arguments(char **list)
 	arguments.size = count_args(list);
 	arguments.numbers = malloc(sizeof(long) * arguments.size);
 	if (!arguments.numbers)
-		exit(ft_printf("Malloc failed\n"));
+		exit(ft_fprintf(STDERR_FILENO, "Malloc failed\n"));
 	i = 0;
 	while (i < arguments.size)
 	{
