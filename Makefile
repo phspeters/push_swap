@@ -6,7 +6,7 @@
 #    By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:13:03 by pehenri2          #+#    #+#              #
-#    Updated: 2024/02/02 19:28:11 by pehenri2         ###   ########.fr        #
+#    Updated: 2024/02/02 19:48:05 by pehenri2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ fclean: clean
 re: fclean all
 
 norm:
-	@norminette $(SRCS_PATH) $(CHECKER_PATH) $(LIBFT) include
+	@norminette $(SRCS_PATH) $(CHECKER_PATH) $(STACK_PATH) $(LIBFT_PATH) include
 
 val: all
 	valgrind --leak-check=full \
