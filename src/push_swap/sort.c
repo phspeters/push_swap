@@ -6,28 +6,11 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:00:58 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/01 18:26:26 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/02 17:34:04 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	sorted(t_stack stack_a, t_stack stack_b)
-{
-	int	i;
-
-	if (stack_b.top != -1)
-		return (0);
-	i = 0;
-	while (i <= stack_a.top)
-	{
-		if (stack_a.items[i].value != \
-		(stack_a.top - stack_a.items[i].arr_index))
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 void	sort(t_stack *stack_a, t_stack *stack_b)
 {
@@ -44,7 +27,7 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 		else
 		{
 			while (stack_a->top > 2)
-				pb(stack_a, stack_b);
+				pb(stack_a, stack_b, PUSH_SWAP);
 			sort_three_numbers(stack_a);
 		}
 		calculate_stack_positions(stack_b);
@@ -72,11 +55,11 @@ void	sort_three_numbers(t_stack *stack)
 		i++;
 	}
 	if (highest == stack->items[stack->top].value)
-		ra(stack);
+		ra(stack, PUSH_SWAP);
 	else if (highest == stack->items[stack->top - 1].value)
-		rra(stack);
+		rra(stack, PUSH_SWAP);
 	if (stack->items[stack->top].value > stack->items[stack->top - 1].value)
-		sa(stack);
+		sa(stack, PUSH_SWAP);
 }
 
 int	in_order(t_stack stack_a, t_stack stack_b)
@@ -113,12 +96,12 @@ void	rotate_until_sorted(t_stack *stack_a)
 	{
 		while (stack_a->items[i].value
 			!= stack_a->top - stack_a->items[i].arr_index)
-			ra(stack_a);
+			ra(stack_a, PUSH_SWAP);
 	}
 	else
 	{
 		while (stack_a->items[i].value
 			!= stack_a->top - stack_a->items[i].arr_index)
-			rra(stack_a);
+			rra(stack_a, PUSH_SWAP);
 	}
 }

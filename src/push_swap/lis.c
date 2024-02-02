@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:53:22 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/01 20:43:27 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/02 17:33:24 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,14 +105,14 @@ void	leave_lis_and_push_rest(t_stack *stack_a, t_stack *stack_b, t_lis lis)
 	{
 		if (stack_a->items[stack_a->top].value == lis.sequence[i])
 		{
-			ra(stack_a);
+			ra(stack_a, PUSH_SWAP);
 			i++;
 		}
 		else
-			pb(stack_a, stack_b);
+			pb(stack_a, stack_b, PUSH_SWAP);
 		if (i > lis.size - 1)
 			while (stack_a->items[stack_a->top].value != lis.sequence[0])
-				pb(stack_a, stack_b);
+				pb(stack_a, stack_b, PUSH_SWAP);
 	}
 	free(lis.sequence);
 }

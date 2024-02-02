@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/23 17:57:55 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/27 20:50:36 by pehenri2         ###   ########.fr       */
+/*   Created: 2023/12/13 12:16:48 by pehenri2          #+#    #+#             */
+/*   Updated: 2024/02/02 17:26:46 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push(t_stack *origin, t_stack *destination)
+int	main(int argc, char **argv)
 {
-	if (origin->top < 0)
-		return ;
-	destination->top++;
-	destination->items[destination->top].value = \
-											origin->items[origin->top].value;
-	origin->top--;
-}
+	t_arguments	arguments;
+	t_stack		stack_a;
+	t_stack		stack_b;
 
-void	pa(t_stack *stack_a, t_stack *stack_b)
-{
-	push(stack_b, stack_a);
-	write(1, "pa\n", 3);
-}
-
-void	pb(t_stack *stack_a, t_stack *stack_b)
-{
-	push(stack_a, stack_b);
-	write(1, "pb\n", 3);
+	arguments = parse_arguments(argc, argv);
+	initialize_stacks(&stack_a, &stack_b, arguments);
+	populate_stack(&stack_a, arguments);
+	rank_and_update_stack_values(&stack_a, arguments);
+	if (!sorted(stack_a, stack_b))
+		sort(&stack_a, &stack_b);
+	free_data(&stack_a, &stack_b, &arguments);
+	return (0);
 }

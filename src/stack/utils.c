@@ -6,38 +6,45 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:54:45 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/01 13:57:34 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:39:40 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "stack.h"
 
-long	ft_atol(const char *nptr)
+int	has_invalid_chars(char *arg)
 {
-	int		i;
-	int		s;
-	long	result;
+	int	i;
 
-	s = 1;
 	i = 0;
-	result = 0;
-	while (ft_isspace(nptr[i]))
-		i++;
-	if (nptr[i] == '-')
+	if (arg[i] == '\0')
+		return (1);
+	while (arg[i])
 	{
-		s = -1;
+		if (!ft_isdigit(arg[i]) && !ft_isspace(arg[i]))
+		{
+			if ((arg[i] == '-' || arg[i] == '+') && ft_isdigit(arg[i + 1]))
+				i++;
+			else
+				return (1);
+		}
 		i++;
 	}
-	else if (nptr[i] == '+')
-		i++;
-	while (ft_isdigit(nptr[i]))
+	return (0);
+}
+
+int	has_invalid_args(char **arg_list)
+{
+	int	i;
+
+	i = 0;
+	while (arg_list[i])
 	{
-		result = (nptr[i] - '0') + (result * 10);
+		if (has_invalid_chars(arg_list[i]))
+			return (1);
 		i++;
 	}
-	if (nptr[i] != '\0')
-		return (0);
-	return (result * s);
+	return (0);
 }
 
 void	free_data(t_stack *stack_a, t_stack *stack_b, t_arguments *arguments)
@@ -47,14 +54,18 @@ void	free_data(t_stack *stack_a, t_stack *stack_b, t_arguments *arguments)
 	free(arguments->numbers);
 }
 
-void	calculate_stack_positions(t_stack *stack)
+int	max(int a, int b)
 {
-	int	i;
+	if (a > b)
+		return (a);
+	else
+		return (b);
+}
 
-	i = 0;
-	while (i <= stack->top)
-	{
-		stack->items[i].arr_index = i;
-		i++;
-	}
+int	min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	else
+		return (b);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 14:54:45 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/01/27 12:25:39 by pehenri2         ###   ########.fr       */
+/*   Created: 2024/02/02 19:28:44 by pehenri2          #+#    #+#             */
+/*   Updated: 2024/02/02 19:28:59 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
 long	ft_atol(const char *nptr)
 {
@@ -35,42 +35,5 @@ long	ft_atol(const char *nptr)
 		result = (nptr[i] - '0') + (result * 10);
 		i++;
 	}
-	if (nptr[i] != '\0')
-		return (0);
 	return (result * s);
-}
-
-void	free_data(t_stack *stack_a, t_stack *stack_b, t_arguments *arguments)
-{
-	free(stack_a->items);
-	free(stack_b->items);
-	free(arguments->numbers);
-}
-
-void	calculate_stack_positions(t_stack *stack)
-{
-	int	i;
-
-	i = 0;
-	while (i <= stack->top)
-	{
-		stack->items[i].arr_index = i;
-		i++;
-	}
-}
-
-int	max(int a, int b)
-{
-	if (a > b)
-		return (a);
-	else
-		return (b);
-}
-
-int	min(int a, int b)
-{
-	if (a < b)
-		return (a);
-	else
-		return (b);
 }

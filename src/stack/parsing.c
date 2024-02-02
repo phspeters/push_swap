@@ -6,11 +6,11 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:05:14 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/01 20:43:21 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:32:47 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "stack.h"
 
 t_arguments	parse_arguments(int argc, char **argv)
 {
@@ -29,9 +29,11 @@ t_arguments	parse_arguments(int argc, char **argv)
 
 t_arguments	parse_single_argument(char *arg_sentence)
 {
-	char		**splitted;
 	t_arguments	arguments;
+	char		**splitted;
 
+	if (has_invalid_chars(arg_sentence))
+		exit(ft_fprintf(STDERR_FILENO, "Error\n"));
 	splitted = ft_split(arg_sentence, ' ');
 	if (!splitted)
 		exit(ft_fprintf(STDERR_FILENO, "Malloc failed\n"));
@@ -40,25 +42,26 @@ t_arguments	parse_single_argument(char *arg_sentence)
 	return (arguments);
 }
 
-t_arguments	parse_multiple_arguments(char **list)
+t_arguments	parse_multiple_arguments(char **arg_list)
 {
 	t_arguments	arguments;
 	int			i;
 
-	arguments.size = count_args(list);
+	if (has_invalid_args(arg_list))
+		exit(ft_fprintf(STDERR_FILENO, "Error\n"));
+	arguments.size = count_args(arg_list);
 	arguments.numbers = malloc(sizeof(long) * arguments.size);
 	if (!arguments.numbers)
 		exit(ft_fprintf(STDERR_FILENO, "Malloc failed\n"));
-	i = 0;
-	while (i < arguments.size)
+	i = -1;
+	while (++i < arguments.size)
 	{
-		arguments.numbers[i] = ft_atol(list[i]);
-		if ((arguments.numbers[i] == 0) && (*list[i] != '0'))
+		arguments.numbers[i] = ft_atol(arg_list[i]);
+		if ((arguments.numbers[i] == 0) && (*arg_list[i] != '0'))
 		{
 			arguments.numbers = NULL;
 			break ;
 		}
-		i++;
 	}
 	if (check_for_duplicates_and_int_range(arguments.numbers, i))
 	{
@@ -68,12 +71,12 @@ t_arguments	parse_multiple_arguments(char **list)
 	return (arguments);
 }
 
-int	count_args(char **list)
+int	count_args(char **arg_list)
 {
 	int	arg_counter;
 
 	arg_counter = 0;
-	while (list[arg_counter])
+	while (arg_list[arg_counter])
 		arg_counter++;
 	return (arg_counter);
 }

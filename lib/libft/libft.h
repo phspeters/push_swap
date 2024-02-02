@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:02:33 by pehenri2          #+#    #+#             */
-/*   Updated: 2023/11/19 21:36:59 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:33:22 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char	*ft_strtoupper(char *str);
 char	*ft_strtolower(char *str);
 void	*ft_free_str(char *str);
 int		ft_fprintf(const int fd, const char *str, ...);
+long	ft_atol(const char *nptr);
 
 //Mandatory part 1 functions
 int		ft_isalpha(int c);

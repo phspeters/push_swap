@@ -6,60 +6,75 @@
 #    By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:13:03 by pehenri2          #+#    #+#              #
-#    Updated: 2024/02/01 20:49:00 by pehenri2         ###   ########.fr        #
+#    Updated: 2024/02/02 19:28:11 by pehenri2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME				= push_swap
-BONUS_NAME			= checker
-#CFLAGS				= -Wextra -Wall -Werror -Wunreachable-code -fsanitize=address #-Ofast
+CHECKER				= checker
+STACK				= stack.a
+STACK_LIB			= $(addprefix ./lib/,$(STACK))
 CFLAGS				= -Wextra -Wall -Werror -Wunreachable-code -g3
-LIBFT				= ./lib/libft
+LIBFT				= $(addprefix $(LIBFT_PATH), libft.a)
+LIBFT_PATH			= ./lib/libft/
 CC					= cc
-HEADERS				= -I ./include -I $(LIBFT)
-LIBS				= $(LIBFT)/libft.a
-SRCS_PATH			= ./src/mandatory/
-FILES				= main.c parsing.c utils.c push.c sort.c lis.c cost.c move.c swap.c rotate.c reverse_rotate.c
-OBJS				= $(addprefix $(SRCS_PATH),$(FILES:%.c=%.o))
-BONUS_PATH			= ./src/bonus/
-BONUS_FILES			= main.c parsing.c instructions.c utils.c push.c reverse_rotate.c rotate.c swap.c
-BONUS_OBJS			= $(addprefix $(BONUS_PATH),$(BONUS_FILES:%.c=%.o))
+HEADERS				= -I ./include -I $(LIBFT_PATH)
+LIBS				= $(STACK_LIB) $(LIBFT)
+SRCS_PATH			= ./src/push_swap/
+FILES				= $(addprefix $(SRCS_PATH), main.c sort.c lis.c cost.c move.c)
+OBJS				= $(FILES:%.c=%.o)
+STACK_PATH			= ./src/stack/
+STACK_FILES			= $(addprefix $(STACK_PATH), parsing.c push.c reverse_rotate.c rotate.c stack.c swap.c utils.c)
+STACK_OBJS			= $(STACK_FILES:%.c=%.o)
+CHECKER_PATH		= ./src/checker/
+CHECKER_FILES		= $(addprefix $(CHECKER_PATH), main.c)
+CHECKER_OBJS		= $(CHECKER_FILES:%.c=%.o)
 EXE					?= 	push_swap
 
-all: $(NAME)
+.DEFAULT_GOAL = $(NAME)
 
-bonus: $(BONUS_NAME)
+all: $(STACK) $(NAME) $(CHECKER)
+
+bonus: $(STACK) $(CHECKER)
+
+$(NAME): $(STACK) $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) $(HEADERS) $(LIBS) -o $(NAME)
+
+$(CHECKER): $(STACK) $(CHECKER_OBJS)
+	@$(CC) $(CFLAGS) $(CHECKER_OBJS) $(HEADERS) $(LIBS) -o $(CHECKER)
+
+$(STACK): libft $(STACK_OBJS)
+
+$(STACK_PATH)%.o: $(STACK_PATH)%.c
+	@$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@ && printf "Compiling: $(notdir $<\n)"
+	@ar rcs $(STACK_LIB) $(LIBFT) $@
 
 libft:
-	@make -C $(LIBFT) --silent
+	@make -C $(LIBFT_PATH) --silent
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<\n)"
-
-$(NAME): libft $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
-
-$(BONUS_NAME): libft $(BONUS_OBJS)
-	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBS) $(HEADERS) -o $(BONUS_NAME)
+	@$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@ && printf "Compiling: $(notdir $<\n)"
 
 clean:
 	@rm -rf $(OBJS)
-	@rm -rf $(BONUS_OBJS)
-	@make -C $(LIBFT) clean --silent
+	@rm -rf $(CHECKER_OBJS)
+	@rm -rf $(STACK_OBJS)
+	@make -C $(LIBFT_PATH) clean --silent
 	@echo "Deleted object files"
 
 fclean: clean
 	@rm -rf $(NAME)
-	@rm -rf $(BONUS_NAME)
-	@make -C $(LIBFT) fclean --silent
-	@echo "Deleted executable files"
+	@rm -rf $(CHECKER)
+	@rm -rf $(STACK_LIB)
+	@make -C $(LIBFT_PATH) fclean --silent
+	@echo "Deleted executable files and static libraries"
 
 re: fclean all
 
 norm:
-	@norminette $(SRCS_PATH) $(BONUS_PATH) $(LIBFT) include
+	@norminette $(SRCS_PATH) $(CHECKER_PATH) $(LIBFT) include
 
-val: all bonus
+val: all
 	valgrind --leak-check=full \
          --show-leak-kinds=all \
          --track-origins=yes \
