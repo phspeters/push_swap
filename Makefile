@@ -6,23 +6,24 @@
 #    By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:13:03 by pehenri2          #+#    #+#              #
-#    Updated: 2024/02/02 19:48:05 by pehenri2         ###   ########.fr        #
+#    Updated: 2024/02/03 13:25:51 by pehenri2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME				= push_swap
 CHECKER				= checker
 STACK				= stack.a
-STACK_LIB			= $(addprefix ./lib/,$(STACK))
+CC					= cc
 CFLAGS				= -Wextra -Wall -Werror -Wunreachable-code -g3
+HEADERS				= -I ./include -I $(LIBFT_PATH)
 LIBFT				= $(addprefix $(LIBFT_PATH), libft.a)
 LIBFT_PATH			= ./lib/libft/
-CC					= cc
-HEADERS				= -I ./include -I $(LIBFT_PATH)
+LIBS_PATH			= ./lib/
 LIBS				= $(STACK_LIB) $(LIBFT)
 SRCS_PATH			= ./src/push_swap/
 FILES				= $(addprefix $(SRCS_PATH), main.c sort.c lis.c cost.c move.c)
 OBJS				= $(FILES:%.c=%.o)
+STACK_LIB			= $(addprefix $(LIBS_PATH),$(STACK))
 STACK_PATH			= ./src/stack/
 STACK_FILES			= $(addprefix $(STACK_PATH), parsing.c push.c reverse_rotate.c rotate.c stack.c swap.c utils.c)
 STACK_OBJS			= $(STACK_FILES:%.c=%.o)
