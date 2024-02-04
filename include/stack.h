@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:17:54 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/02 19:29:53 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/04 10:09:32 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_stack
 {
 	int		top;
 	int		max_size;
+	int		quarters[3];
 	t_item	*items;
 }	t_stack;
 

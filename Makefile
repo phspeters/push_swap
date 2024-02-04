@@ -6,7 +6,7 @@
 #    By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:13:03 by pehenri2          #+#    #+#              #
-#    Updated: 2024/02/03 13:25:51 by pehenri2         ###   ########.fr        #
+#    Updated: 2024/02/04 09:54:17 by pehenri2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LIBFT_PATH			= ./lib/libft/
 LIBS_PATH			= ./lib/
 LIBS				= $(STACK_LIB) $(LIBFT)
 SRCS_PATH			= ./src/push_swap/
-FILES				= $(addprefix $(SRCS_PATH), main.c sort.c lis.c cost.c move.c)
+FILES				= $(addprefix $(SRCS_PATH), main.c sort.c lis.c lis_operations.c cost.c move.c)
 OBJS				= $(FILES:%.c=%.o)
 STACK_LIB			= $(addprefix $(LIBS_PATH),$(STACK))
 STACK_PATH			= ./src/stack/

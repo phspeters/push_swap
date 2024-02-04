@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:53:22 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/02 17:33:24 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/04 09:47:19 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ t_lis	get_lis(t_stack *stack)
 	while (i >= 0)
 	{
 		j = stack->top;
-		while (--j > i)
+		while (j > i)
 		{
 			if ((stack->items[i].value > stack->items[j].value)
 				&& (lis.size_ending_in_original_index[i]
-					<= lis.size_ending_in_original_index[j] + 1))
+					<= lis.size_ending_in_original_index[j]))
 				update_lis_parameters(&lis, i, j);
 			j--;
 		}
@@ -96,23 +96,16 @@ int	*get_lis_numbers(t_item *items, t_lis *lis)
 	return (sequence);
 }
 
-void	leave_lis_and_push_rest(t_stack *stack_a, t_stack *stack_b, t_lis lis)
+int	part_of_lis(t_item item, t_lis lis)
 {
 	int	i;
 
 	i = 0;
 	while (i < lis.size)
 	{
-		if (stack_a->items[stack_a->top].value == lis.sequence[i])
-		{
-			ra(stack_a, PUSH_SWAP);
-			i++;
-		}
-		else
-			pb(stack_a, stack_b, PUSH_SWAP);
-		if (i > lis.size - 1)
-			while (stack_a->items[stack_a->top].value != lis.sequence[0])
-				pb(stack_a, stack_b, PUSH_SWAP);
+		if (item.value == lis.sequence[i])
+			return (1);
+		i++;
 	}
-	free(lis.sequence);
+	return (0);
 }
