@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:53:22 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/04 09:47:19 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:38:37 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	*get_lis_numbers(t_item *items, t_lis *lis)
 	int	i;
 	int	j;
 
-	if (lis->size > 3)
+	if (lis->size > 4)
 	{
 		sequence = malloc(sizeof(int) * lis->size);
 		if (!sequence)
