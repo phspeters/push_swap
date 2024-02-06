@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:17:54 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/06 17:45:08 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:54:04 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@ typedef struct s_arguments
  * @param value Value of the item. Initially, the holds the argument value. Later
  * in the program, it holds the rank of the item.
  * @param arr_index Index of the item in the underlying array, NOT the stack.
- * @param stack_a_movement_cost Cost of moving the item to the top of stack A.
+ * @param stack_a_movement_cost Cost of moving the target item to the top of
+ * stack A.
  * @param stack_b_movement_cost Cost of moving the item to the top of stack B.
- * @param combined_cost Combined cost of moving the item to the top of both
- * stacks.
+ * @param combined_cost Combined cost of moving the item to the top of stack B
+ * and the target item to the top of stack A.
  */
 typedef struct s_stack_item
 {

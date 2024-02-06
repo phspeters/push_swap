@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:53:22 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/06 16:45:06 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:55:36 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * the value is greater than the value at index j, than, the size of the LIS
  * ending in index i is the size of the LIS ending in index j, + 1.
  * The function also stores the index of the previous element of the LIS in
- * another supporting array. Effectively, serving as breadcrumbs to reconstruct
+ * another supporting array, effectively serving as breadcrumbs to reconstruct
  * the LIS.
  * 
  * @param stack Pointer to the stack.
