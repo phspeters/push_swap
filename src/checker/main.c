@@ -6,12 +6,22 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:30:58 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/02 17:32:52 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:25:18 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
+/**
+ * @brief Main function of the checker program. It parses the arguments,
+ * initializes the stacks, populates the stack A, reads and applies the
+ * instructions and checks if the stack is sorted. Prints "OK" if it is, "KO"
+ * otherwise.
+ * 
+ * @param argc Number of arguments passed to the program.
+ * @param argv Array of arguments passed to the program, as strings.
+ * @return int EXIT_SUCCESS if the program runs successfully. 
+ */
 int	main(int argc, char **argv)
 {
 	t_arguments	arguments;
@@ -27,9 +37,16 @@ int	main(int argc, char **argv)
 	else
 		ft_printf("KO\n");
 	free_data(&stack_a, &stack_b, &arguments);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
+/**
+ * @brief Reads the instructions from the standard input and applies them to the
+ * stacks. Each instruction is separated by a newline character.
+ * 
+ * @param stack_a Pointer to stack A.
+ * @param stack_b Pointer to stack B.
+ */
 void	read_and_apply_instructions(t_stack *stack_a, t_stack *stack_b)
 {
 	char	buffer[4];
@@ -48,6 +65,14 @@ void	read_and_apply_instructions(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
+/**
+ * @brief Applies the instructions to the stacks. If the instruction is not
+ * recognized, the program exits with an error message.
+ * 
+ * @param instruction The instruction to be applied.
+ * @param stack_a Pointer to stack A.
+ * @param stack_b Pointer to stack B.
+ */
 void	apply_instructions(char *instruction, t_stack *stack_a,
 	t_stack *stack_b)
 {

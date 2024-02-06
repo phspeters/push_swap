@@ -6,12 +6,20 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 19:58:35 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/01 19:48:39 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:11:04 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ * @brief Calculates the movement costs for each item in stack B to be pushed
+ * to stack A while keeping Stack A sorted and returns the cheapest one.
+ * 
+ * @param stack_a Pointer to stack A.
+ * @param stack_b Pointer to stack B.
+ * @return t_item Cheapest item to be moved.
+ */
 t_item	calculate_movement_costs(t_stack *stack_a, t_stack *stack_b)
 {
 	t_item	cheapest_item;
@@ -38,6 +46,17 @@ t_item	calculate_movement_costs(t_stack *stack_a, t_stack *stack_b)
 	return (cheapest_item);
 }
 
+/**
+ * @brief Given an item from Stack B, calculates the movement cost to put the
+ * target item of stack A on top of the stack. The target item is the very next
+ * item in the sequence of numbers that should be in stack A when sorted.
+ * 
+ * @param item_b The item in stack B.
+ * @param stack_a Pointer to stack A.
+ * @return Cheapest movement cost for the target item to be on top of
+ * stack A. Positive values mean the number of rotates, negative values mean
+ * the number of reverse rotates.
+ */
 int	get_stack_a_movement_cost(t_item item_b, t_stack *stack_a)
 {
 	t_item	target_item;
@@ -53,6 +72,15 @@ int	get_stack_a_movement_cost(t_item item_b, t_stack *stack_a)
 		return (reverse_rotate);
 }
 
+/**
+ * @brief Given an item from Stack B, returns the target item from Stack A. 
+ * The target item is the very next item in the sequence of numbers that 
+ * should be in stack A when sorted.
+ * 
+ * @param item_b The item in stack B.
+ * @param stack_a Pointer to stack A.
+ * @return t_item The target item from stack A.
+ */
 t_item	get_target_item(t_item item_b, t_stack *stack_a)
 {
 	t_item	lowest;
@@ -77,6 +105,16 @@ t_item	get_target_item(t_item item_b, t_stack *stack_a)
 	return (lowest);
 }
 
+/**
+ * @brief Given an item from Stack B, calculates the movement cost to put it
+ *  on top of the stack.
+ * 
+ * @param item The item in stack B.
+ * @param stack_b Pointer to stack B.
+ * @return Cheapest movement cost for the item to be on top of stack B.
+ * Positive values mean the number of rotates, negative values mean the
+ * number of reverse rotates.
+ */
 int	get_stack_b_movement_cost(t_item item, t_stack *stack_b)
 {
 	int	rotate;
@@ -90,6 +128,15 @@ int	get_stack_b_movement_cost(t_item item, t_stack *stack_b)
 		return (reverse_rotate);
 }
 
+/**
+ * @brief Given an item from Stack B, returns the combined movement cost to
+ * put it on top of stack B and the target item on top of stack A. The target
+ * item is the very next  * item in the sequence of numbers that should be 
+ * in stack A when sorted.
+ * 
+ * @param item The item in stack B.
+ * @return The combined movement cost to put it on top of stack A and stack B.
+ */
 int	get_combined_movement_cost(t_item item)
 {
 	int	cost_a;

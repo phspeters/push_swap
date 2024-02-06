@@ -6,12 +6,18 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:58:00 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/02 17:25:13 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:29:39 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
+/**
+ * @brief Rotates the stack down by one position. The last element becomes
+ * the first one.
+ * 
+ * @param stack Pointer to the stack to be reversed rotated.
+ */
 void	reverse_rotate(t_stack *stack)
 {
 	int	swap_value;
@@ -29,20 +35,45 @@ void	reverse_rotate(t_stack *stack)
 	stack->items[stack->top].value = swap_value;
 }
 
-void	rra(t_stack *stack, int program)
+/**
+ * @brief Calls the reverse_rotate function to reverse rotate stack_a.
+ * 
+ * @param stack_a Pointer to stack A.
+ * @param program Flag to check if the function is being called from PUSH_SWAP
+ * or CHECKER. If it's push_swap, it will print the operation on the standard
+ * output. Otherwise, it won't.
+ */
+void	rra(t_stack *stack_a, int program)
 {
-	reverse_rotate(stack);
+	reverse_rotate(stack_a);
 	if (program == PUSH_SWAP)
 		write(1, "rra\n", 4);
 }
 
-void	rrb(t_stack *stack, int program)
+/**
+ * @brief Calls the reverse_rotate function to reverse rotate stack_b.
+ * 
+ * @param stack_b Pointer to stack B.
+ * @param program Flag to check if the function is being called from PUSH_SWAP
+ * or CHECKER. If it's push_swap, it will print the operation on the standard
+ * output. Otherwise, it won't.
+ */
+void	rrb(t_stack *stack_b, int program)
 {
-	reverse_rotate(stack);
+	reverse_rotate(stack_b);
 	if (program == PUSH_SWAP)
 		write(1, "rrb\n", 4);
 }
 
+/**
+ * @brief Calls the reverse_rotate function to reverse rotate both stacks.
+ * 
+ * @param stack_a Pointer to stack A.
+ * @param stack_b Pointer to stack B.
+ * @param program Flag to check if the function is being called from PUSH_SWAP
+ * or CHECKER. If it's push_swap, it will print the operation on the standard
+ * output. Otherwise, it won't.
+ */
 void	rrr(t_stack *stack_a, t_stack *stack_b, int program)
 {
 	reverse_rotate(stack_a);

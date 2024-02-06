@@ -6,12 +6,22 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:16:48 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/04 09:47:12 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:51:55 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ * @brief Main function of the push_swap program. It parses the arguments,
+ * initializes the stacks, populates the stack A, ranks and updates the stack
+ * values, sorts the stack while printing the instructions and frees the 
+ * allocated memory.
+ * 
+ * @param argc Number of arguments passed to the program.
+ * @param argv Array of arguments passed to the program, as strings.
+ * @return int EXIT_SUCCESS if the program runs successfully. 
+ */
 int	main(int argc, char **argv)
 {
 	t_arguments	arguments;
@@ -25,5 +35,5 @@ int	main(int argc, char **argv)
 	if (!sorted(stack_a, stack_b))
 		sort(&stack_a, &stack_b);
 	free_data(&stack_a, &stack_b, &arguments);
-	return (0);
+	return (EXIT_SUCCESS);
 }

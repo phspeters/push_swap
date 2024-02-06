@@ -6,12 +6,19 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:54:45 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/03 13:04:02 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:48:18 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
+/**
+ * @brief Checks if the string has invalid characters. That is, if it has any
+ * character that is not a digit, a space or a sign.
+ * 
+ * @param arg The string to be checked.
+ * @return 1 if the string has invalid characters, 0 otherwise.
+ */
 int	has_invalid_chars(char *arg)
 {
 	int	i;
@@ -41,6 +48,12 @@ int	has_invalid_chars(char *arg)
 	return (0);
 }
 
+/**
+ * @brief Checks if any argument inside the arg_list has invalid characters.
+ * 
+ * @param arg_list The list of arguments to be checked.
+ * @return 1 if the arguments have invalid characters, 0 otherwise.
+ */
 int	has_invalid_args(char **arg_list)
 {
 	int	i;
@@ -55,6 +68,13 @@ int	has_invalid_args(char **arg_list)
 	return (0);
 }
 
+/**
+ * @brief Frees the memory allocated for the stacks and the arguments.
+ * 
+ * @param stack_a Pointer to stack A.
+ * @param stack_b Pointer to stack B.
+ * @param arguments Pointer to arguments struct.
+ */
 void	free_data(t_stack *stack_a, t_stack *stack_b, t_arguments *arguments)
 {
 	free(stack_a->items);
@@ -62,6 +82,13 @@ void	free_data(t_stack *stack_a, t_stack *stack_b, t_arguments *arguments)
 	free(arguments->numbers);
 }
 
+/**
+ * @brief Returns the maximum value between a and b.
+ * 
+ * @param a First value.
+ * @param b Second value.
+ * @return The maximum value between a and b.
+ */
 int	max(int a, int b)
 {
 	if (a > b)
@@ -70,6 +97,13 @@ int	max(int a, int b)
 		return (b);
 }
 
+/**
+ * @brief Returns the minimum value between a and b.
+ * 
+ * @param a First value.
+ * @param b Second value.
+ * @return The minimum value between a and b.
+ */
 int	min(int a, int b)
 {
 	if (a < b)
