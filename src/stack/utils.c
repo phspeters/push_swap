@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:54:45 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/06 15:48:18 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/07 13:49:59 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ int	has_invalid_chars(char *arg)
 }
 
 /**
- * @brief Checks if any argument inside the arg_list has invalid characters.
+ * @brief Checks if any argument inside the arg_list has invalid characters
+ * by calling has_invalid_chars.
+ * 
  * 
  * @param arg_list The list of arguments to be checked.
  * @return 1 if the arguments have invalid characters, 0 otherwise.

@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:16:48 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/06 15:51:55 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/07 14:01:58 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /**
  * @brief Main function of the push_swap program. It parses the arguments,
- * initializes the stacks, populates the stack A, ranks and updates the stack
+ * initializes the stacks, populates stack A, ranks and updates the stack
  * values, sorts the stack while printing the instructions and frees the 
  * allocated memory.
  * 

@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 19:58:35 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/06 16:11:04 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/07 13:53:20 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_item	calculate_movement_costs(t_stack *stack_a, t_stack *stack_b)
 /**
  * @brief Given an item from Stack B, calculates the movement cost to put the
  * target item of stack A on top of the stack. The target item is the very next
- * item in the sequence of numbers that should be in stack A when sorted.
+ * item in the sequence of numbers that should be in stack A when it is sorted.
  * 
  * @param item_b The item in stack B.
  * @param stack_a Pointer to stack A.
@@ -73,9 +73,9 @@ int	get_stack_a_movement_cost(t_item item_b, t_stack *stack_a)
 }
 
 /**
- * @brief Given an item from Stack B, returns the target item from Stack A. 
- * The target item is the very next item in the sequence of numbers that 
- * should be in stack A when sorted.
+ * @brief Given an item from Stack B, returns the respective target item from
+ * Stack A. The target item is the very next item in the sequence of numbers
+ * that should be in stack A when it is sorted.
  * 
  * @param item_b The item in stack B.
  * @param stack_a Pointer to stack A.
@@ -130,9 +130,9 @@ int	get_stack_b_movement_cost(t_item item, t_stack *stack_b)
 
 /**
  * @brief Given an item from Stack B, returns the combined movement cost to
- * put it on top of stack B and the target item on top of stack A. The target
- * item is the very next  * item in the sequence of numbers that should be 
- * in stack A when sorted.
+ * put it on top of stack B and the respective target item on top of stack A.
+ * The target item is the very next  * item in the sequence of numbers that
+ * should be in stack A when sorted.
  * 
  * @param item The item in stack B.
  * @return The combined movement cost to put it on top of stack A and stack B.

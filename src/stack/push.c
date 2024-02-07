@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:57:55 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/06 15:23:53 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/07 13:46:27 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	push(t_stack *origin, t_stack *destination)
 }
 
 /**
- * @brief Calls the push function to push the top item from stack_b to stack_a.
+ * @brief a.k.a Push to A. Calls the push function to push the top item from
+ * stack_b to stack_a.
  * 
  * @param stack_a Pointer to stack A.
  * @param stack_b Pointer to stack B.
@@ -46,7 +47,8 @@ void	pa(t_stack *stack_a, t_stack *stack_b, int program)
 }
 
 /**
- * @brief Calls the push function to push the top item from stack_a to stack_b.
+ * @brief a.k.a Push to B. Calls the push function to push the top item from
+ * stack_a to stack_b.
  * 
  * @param stack_a Pointer to stack A.
  * @param stack_b Pointer to stack B.

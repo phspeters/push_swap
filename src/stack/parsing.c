@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:05:14 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/06 17:26:44 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/07 14:05:11 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ t_arguments	parse_single_argument(char *arg_sentence)
 	t_arguments	arguments;
 	char		**splitted;
 
+	if (*arg_sentence == '\0')
+		exit(ft_fprintf(STDERR_FILENO, "Error\n"));
 	splitted = ft_split(arg_sentence, ' ');
 	if (!splitted)
 		exit(ft_fprintf(STDERR_FILENO, "Malloc failed\n"));
@@ -60,8 +62,9 @@ t_arguments	parse_single_argument(char *arg_sentence)
 }
 
 /**
- * @brief Checks for invalid chars, duplicate values and if the numbers are
- * within integer range.
+ * @brief Checks if any of the arguments has invalid chars, duplicate
+ * values and if the numbers are within integer range. If the conditions
+ * are not met, it exits the program.
  * After everything is checked, converts the strings to integers and stores
  * them in an array.
  * 
@@ -99,7 +102,7 @@ t_arguments	parse_multiple_arguments(char **arg_list)
 }
 
 /**
- * @brief Counts the number of arguments in the array of strings.
+ * @brief Counts the number of arguments in an array of strings.
  * 
  * @param arg_list Array of strings holding the arguments.
  * @return Number of arguments as an int.
