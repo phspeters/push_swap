@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:05:14 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/07 14:05:11 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/07 14:24:14 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_arguments	parse_single_argument(char *arg_sentence)
 	t_arguments	arguments;
 	char		**splitted;
 
-	if (*arg_sentence == '\0')
+	if (has_invalid_chars(arg_sentence))
 		exit(ft_fprintf(STDERR_FILENO, "Error\n"));
 	splitted = ft_split(arg_sentence, ' ');
 	if (!splitted)
