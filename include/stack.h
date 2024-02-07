@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:17:54 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/06 17:54:04 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:37:10 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@
  * @brief Structure to hold the arguments passed to the program as integers.
  *
  * @param size Size of the array.
- * @param numbers Array of integers. 
+ * @param numbers Array of integers.
+ * @param is_valid 1 if the arguments are valid, 0 otherwise.
  */
 typedef struct s_arguments
 {
+	int		is_valid;
 	int		size;
 	long	*numbers;
 }	t_arguments;

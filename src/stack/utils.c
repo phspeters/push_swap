@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:54:45 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/07 13:49:59 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:54:32 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 /**
  * @brief Checks if the string has invalid characters. That is, if it has any
- * character that is not a digit, a space or a sign.
+ * character that is not a digit, except for the first character, which can be a
+ * sign.
  * 
  * @param arg The string to be checked.
  * @return 1 if the string has invalid characters, 0 otherwise.
@@ -22,29 +23,17 @@
 int	has_invalid_chars(char *arg)
 {
 	int	i;
-	int	has_digits;
 
-	if (arg[0] == '\0')
+	if (*arg == '\0')
 		return (1);
-	has_digits = 0;
 	i = -1;
+	if ((ft_issign(arg[0]) && ft_isdigit(arg[1])))
+		i++;
 	while (arg[++i])
 	{
-		if ((ft_issign(arg[i]) && ft_isdigit(arg[i + 1])) || ft_isspace(arg[i]))
-			continue ;
-		else if (ft_isdigit(arg[i]))
-		{
-			has_digits = 1;
-			if (ft_isspace(arg[i + 1]) || ft_isdigit(arg[i + 1]) || !arg[i + 1])
-				continue ;
-			else
-				return (1);
-		}
-		else
+		if (!ft_isdigit(arg[i]))
 			return (1);
 	}
-	if (!has_digits)
-		return (1);
 	return (0);
 }
 
