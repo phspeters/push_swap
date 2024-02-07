@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:30:58 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/07 14:10:41 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/07 14:17:46 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
  * @brief Main function of the checker program. It parses the arguments,
  * initializes the stacks, populates the stack A, reads and applies the
  * instructions and checks if the stack is sorted. Prints "OK" if it is, "KO"
- * otherwise. Because the program reads from the standard input, it will keep
- * reading until ctrl+D is pressed to send an EOF to the terminal, effectively
- * ending the read loop and finishing the program.
+ * otherwise. The program reads from the standard input and it will keep
+ * reading until an EOF is reached. When running the program withou a pipe from
+ * push_swap, ctrl+D needs to be pressed to send an EOF marker to the shell,
+ * effectively ending the read loop and finishing the program.
  * 
  * @param argc Number of arguments passed to the program.
  * @param argv Array of arguments passed to the program, as strings.
