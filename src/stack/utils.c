@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:54:45 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/07 16:54:32 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:50:41 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@ int	has_invalid_chars(char *arg)
 
 	if (*arg == '\0')
 		return (1);
-	i = -1;
-	if ((ft_issign(arg[0]) && ft_isdigit(arg[1])))
+	i = 0;
+	if ((ft_issign(arg[i])))
 		i++;
-	while (arg[++i])
+	while (arg[i])
 	{
 		if (!ft_isdigit(arg[i]))
 			return (1);
+		i++;
 	}
 	return (0);
 }

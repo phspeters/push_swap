@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:13:11 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/06 17:47:34 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:55:28 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ typedef struct s_longest_increasing_subsequence
 	int	size;
 }	t_lis;
 
-//sort.c
+//cost.c
 
-void		sort(t_stack *stack_a, t_stack *stack_b);
-void		sort_three_numbers(t_stack *stack);
-int			in_order(t_stack stack_a, t_stack stack_b);
-void		rotate_until_sorted(t_stack *stack_a);
-void		selection_sort(int *remaining, int size);
+t_item		calculate_movement_costs(t_stack *stack_a, t_stack *stack_b);
+int			get_stack_a_movement_cost(t_item item_b, t_stack *stack_a);
+t_item		get_target_item(t_item item_b, t_stack *stack_a);
+int			get_stack_b_movement_cost(t_item item, t_stack *stack_b);
+int			get_combined_movement_cost(t_item item);
 
 //lis.c
 
@@ -64,14 +64,6 @@ void		push_lower_half_and_pre_sort(t_stack *stack_a, t_stack *stack_b,
 void		push_rest_and_pre_sort(t_stack *stack_a, t_stack *stack_b,
 				t_lis lis);
 
-//cost.c
-
-t_item		calculate_movement_costs(t_stack *stack_a, t_stack *stack_b);
-int			get_stack_a_movement_cost(t_item item_b, t_stack *stack_a);
-t_item		get_target_item(t_item item_b, t_stack *stack_a);
-int			get_stack_b_movement_cost(t_item item, t_stack *stack_b);
-int			get_combined_movement_cost(t_item item);
-
 //move.c
 
 void		make_cheapest_move(t_item cheapest_item, t_stack *stack_a,
@@ -82,5 +74,13 @@ void		reverse_rotate_and_update_costs(t_stack *stack_a, t_stack *stack_b,
 				t_item *item);
 void		update_costs(int *stack_a_movement_cost,
 				int *stack_b_movement_cost);
+
+//sort.c
+
+void		sort(t_stack *stack_a, t_stack *stack_b);
+void		sort_three_numbers(t_stack *stack);
+int			in_order(t_stack stack_a, t_stack stack_b);
+void		rotate_until_sorted(t_stack *stack_a);
+void		selection_sort(int *remaining, int size);
 
 #endif
