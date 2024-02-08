@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:17:54 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/07 17:54:41 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:05:16 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 # define PUSH_SWAP 1
 
 /**
- * @brief Structure to hold the arguments passed to the program as integers.
+ * @brief Structure to hold the arguments passed to the program as longs.
  *
- * @param size Size of the array.
- * @param numbers Array of integers.
  * @param is_valid 1 if the arguments are valid, 0 otherwise.
+ * @param size Size of the array.
+ * @param numbers Array of longs.
  */
 typedef struct s_arguments
 {
@@ -60,7 +60,7 @@ typedef struct s_stack_item
 /**
  * @brief Structure to represent the stack.
  *
- * @param top Index of the top of the stack.
+ * @param top Index of the top item in the stack.
  * @param max_size Maximum size of the stack.
  * @param quarters Array of indexes of the elements that divide the items not
  * part of the L.I.S in proportional quarters.

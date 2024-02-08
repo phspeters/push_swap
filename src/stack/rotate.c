@@ -6,15 +6,15 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:57:57 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/06 15:31:12 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:31:54 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
 /**
- * @brief Rotates the stack up by one position. The first element becomes the
- * last one.
+ * @brief Shifts up all elements of the stack by 1 position. The last element
+ * becomes the first one.
  * 
  * @param stack Pointer to the stack to be rotated.
  */
@@ -36,7 +36,8 @@ void	rotate(t_stack *stack)
 }
 
 /**
- * @brief Calls the rotate function to rotate stack_a.
+ * @brief a.k.a Rotate A. Calls the rotate function to shift up all elements of
+ * stack A by 1 position. The last element becomes the first one.
  * 
  * @param stack_a Pointer to stack A.
  * @param program Flag to check if the function is being called from PUSH_SWAP
@@ -51,7 +52,8 @@ void	ra(t_stack *stack_a, int program)
 }
 
 /**
- * @brief Calls the rotate function to rotate stack_b.
+ * @brief a.k.a Rotate B. Calls the rotate function to shift up all elements of
+ * stack B by 1 position. The last element becomes the first one.
  * 
  * @param stack_b Pointer to stack B.
  * @param program Flag to check if the function is being called from PUSH_SWAP
@@ -66,7 +68,9 @@ void	rb(t_stack *stack_b, int program)
 }
 
 /**
- * @brief Calls the rotate function to rotate both stack_a and stack_b.
+ * @brief Calls the rotate function to shift up all elements of both stacks by
+ * 1 position with a single instruction. The last element in each stack becomes
+ * the first one.
  * 
  * @param stack_a Pointer to stack A.
  * @param stack_b Pointer to stack B.

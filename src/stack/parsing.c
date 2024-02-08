@@ -6,7 +6,7 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:05:14 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/07 16:38:20 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:34:45 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 /**
  * @brief Parses the arguments passed to the program and converts them to 
- * integers. Will ultimately check for invalid chars, duplicates and if the
+ * longs. Will ultimately check for invalid chars, duplicates and if the
  * numbers are within the integer range. If the conditions are not met, it exits
  * the program and prints an error.
  * 
  * @param argc Number of arguments passed to the function.
  * @param argv An array of pointers to the strings which are those arguments. 
  *				The first argument, argv[0], is the name of the program itself.
- * @return t_arguments --- holds the size of the array and the array of
+ * @return t_arguments that holds the size of the array and the array of
  * integers.
  */
 t_arguments	parse_arguments(int argc, char **argv)
@@ -47,7 +47,7 @@ t_arguments	parse_arguments(int argc, char **argv)
  * strings and calls parse_multiple_arguments.
  * 
  * @param arg_sentence Single string holding all the arguments.
- * @return t_arguments --- holds the size of the array and the array of
+ * @return t_arguments that holds the size of the array and the array of
  * integers.
  */
 t_arguments	parse_single_argument(char *arg_sentence)
@@ -68,10 +68,11 @@ t_arguments	parse_single_argument(char *arg_sentence)
 /**
  * @brief Checks if any of the arguments has invalid chars, duplicate
  * values and if the numbers are within integer range. Also converts the
- * strings to integers and stores them in an array.
+ * strings to integers and stores them in an array. Sets the is_valid
+ * flag to 0 if any of the conditions are not met.
  * 
  * @param arg_list Array of strings holding the arguments.
- * @return t_arguments --- holds the size of the array and the array of
+ * @return t_arguments that holds the size of the array and the array of
  * integers.
  */
 t_arguments	parse_multiple_arguments(char **arg_list)
@@ -86,15 +87,11 @@ t_arguments	parse_multiple_arguments(char **arg_list)
 	arguments.numbers = malloc(sizeof(long) * arguments.size);
 	if (!arguments.numbers)
 		exit(ft_fprintf(STDERR_FILENO, "Malloc failed\n"));
-	i = -1;
-	while (++i < arguments.size)
+	i = 0;
+	while (i < arguments.size)
 	{
 		arguments.numbers[i] = ft_atol(arg_list[i]);
-		if ((arguments.numbers[i] == 0) && (*arg_list[i] != '0'))
-		{
-			arguments.is_valid = 0;
-			break ;
-		}
+		i++;
 	}
 	if (check_for_duplicates_and_int_range(arguments.numbers, i))
 		arguments.is_valid = 0;

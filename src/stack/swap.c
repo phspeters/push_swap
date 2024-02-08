@@ -6,14 +6,14 @@
 /*   By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:57:23 by pehenri2          #+#    #+#             */
-/*   Updated: 2024/02/06 15:32:08 by pehenri2         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:23:47 by pehenri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
 /**
- * @brief Swaps the top two elements of the stack.
+ * @brief Swaps the position of the top two elements of the stack.
  * 
  * @param stack Pointer to the stack to be swapped.
  */
@@ -29,7 +29,8 @@ void	swap(t_stack *stack)
 }
 
 /**
- * @brief Calls the swap function to swap stack_a.
+ * @brief a.k.a Swap A. Calls the swap function, which swaps the positions of
+ * the top two elements of stack_a.
  * 
  * @param stack_a Pointer to stack A.
  * @param program Flag to check if the function is being called from PUSH_SWAP
@@ -44,7 +45,8 @@ void	sa(t_stack *stack_a, int program)
 }
 
 /**
- * @brief Calls the swap function to swap stack_b.
+ * @brief a.k.a Swap B. Calls the swap function, which swaps the positions of
+ * the top two elements of stack_b.
  * 
  * @param stack_b Pointer to stack B.
  * @param program Flag to check if the function is being called from PUSH_SWAP
@@ -59,7 +61,8 @@ void	sb(t_stack *stack_b, int program)
 }
 
 /**
- * @brief Calls the swap function to swap stack_a and stack_b.
+ * @brief Calls the swap function on both stacks on the same instruction,
+ * which swaps the positions of the top two elements of stack_a and of stack_b.
  * 
  * @param stack_a Pointer to stack A.
  * @param stack_b Pointer to stack B.
