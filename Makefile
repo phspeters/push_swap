@@ -6,7 +6,7 @@
 #    By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:13:03 by pehenri2          #+#    #+#              #
-#    Updated: 2024/02/08 15:09:31 by pehenri2         ###   ########.fr        #
+#    Updated: 2024/02/08 15:29:19 by pehenri2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ fclean: clean
 re: fclean all
 
 norm:
-	@norminette $(SRCS_PATH) $(CHECKER_PATH) $(STACK_PATH) $(LIBFT_PATH) include
+	@norminette -R CheckForbiddenSourceHeader
 
 val: all
 	valgrind --leak-check=full \
