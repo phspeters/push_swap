@@ -6,31 +6,31 @@
 #    By: pehenri2 <pehenri2@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:13:03 by pehenri2          #+#    #+#              #
-#    Updated: 2024/02/04 09:54:17 by pehenri2         ###   ########.fr        #
+#    Updated: 2024/02/08 15:09:31 by pehenri2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME				= push_swap
-CHECKER				= checker
-STACK				= stack.a
-CC					= cc
-CFLAGS				= -Wextra -Wall -Werror -Wunreachable-code -g3
-HEADERS				= -I ./include -I $(LIBFT_PATH)
-LIBFT				= $(addprefix $(LIBFT_PATH), libft.a)
-LIBFT_PATH			= ./lib/libft/
-LIBS_PATH			= ./lib/
-LIBS				= $(STACK_LIB) $(LIBFT)
-SRCS_PATH			= ./src/push_swap/
-FILES				= $(addprefix $(SRCS_PATH), main.c sort.c lis.c lis_operations.c cost.c move.c)
-OBJS				= $(FILES:%.c=%.o)
-STACK_LIB			= $(addprefix $(LIBS_PATH),$(STACK))
-STACK_PATH			= ./src/stack/
-STACK_FILES			= $(addprefix $(STACK_PATH), parsing.c push.c reverse_rotate.c rotate.c stack.c swap.c utils.c)
-STACK_OBJS			= $(STACK_FILES:%.c=%.o)
-CHECKER_PATH		= ./src/checker/
-CHECKER_FILES		= $(addprefix $(CHECKER_PATH), main.c)
-CHECKER_OBJS		= $(CHECKER_FILES:%.c=%.o)
-EXE					?= 	push_swap
+NAME				=	push_swap
+CHECKER				=	checker
+STACK				=	stack.a
+CC					=	cc
+CFLAGS				=	-Wextra -Wall -Werror -Wunreachable-code -g3
+HEADERS				= 	-I ./include -I $(LIBFT_PATH)
+LIBFT				= 	$(addprefix $(LIBFT_PATH), libft.a)
+LIBFT_PATH			= 	./lib/libft/
+LIBS_PATH			= 	./lib/
+LIBS				= 	$(STACK_LIB) $(LIBFT)
+SRCS_PATH			= 	./src/push_swap/
+FILES				= 	$(addprefix $(SRCS_PATH), main.c sort.c lis.c lis_operations.c cost.c move.c)
+OBJS				= 	$(FILES:%.c=%.o)
+STACK_LIB			= 	$(addprefix $(LIBS_PATH),$(STACK))
+STACK_PATH			=	./src/stack/
+STACK_FILES			= 	$(addprefix $(STACK_PATH), parsing.c push.c reverse_rotate.c rotate.c stack.c swap.c utils.c)
+STACK_OBJS			= 	$(STACK_FILES:%.c=%.o)
+CHECKER_PATH		= 	./src/checker/
+CHECKER_FILES		= 	$(addprefix $(CHECKER_PATH), main.c)
+CHECKER_OBJS		= 	$(CHECKER_FILES:%.c=%.o)
+EXE					?=	push_swap
 
 .DEFAULT_GOAL = $(NAME)
 
