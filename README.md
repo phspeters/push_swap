@@ -48,13 +48,13 @@ Write your own checker program
 
 ## 📋 Testing
 
-To compile, go to the project path and run:
+To compile, navigate to the project directory and run:
 
 ```shell
 $ make 
 ```
 
-Then, execute the program.
+Then, execute the program with the numbers to be sorted as arguments.
 
 ```shell
 $ ./push_swap [numbers to be sorted] 
